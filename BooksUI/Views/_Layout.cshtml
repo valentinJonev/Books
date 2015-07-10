@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/css")
+</head>
+<body>
+    @{Html.RenderPartial("_Navbar");}
+    <div>
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/js")
+    @RenderSection("Scripts", false)
+</body>
+</html>

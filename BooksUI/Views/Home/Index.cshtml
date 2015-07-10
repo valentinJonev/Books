@@ -1,0 +1,26 @@
+﻿@model ICollection<Book>
+@{
+    ViewBag.Title = "Books";
+    Layout = "~/Views/_Layout.cshtml";
+}
+    <table id="test" class="display compact cell-border">
+        <thead>
+            <tr>
+                <th>Cover</th>
+                <th>Title</th>
+                <th>Publish date</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Row 1 Data 1</td>
+                <td>Row 1 Data 2</td>
+            </tr>
+        </tbody>
+    </table>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/tableDisplay.js")"></script>
+}

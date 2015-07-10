@@ -1,0 +1,19 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Books]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column Cover in table [dbo].[Books] is currently  IMAGE NULL but is being changed to  VARCHAR (50) NULL.
+         There is no implicit or explicit conversion.
+
+** User actions
+     Table rebuild
+       [dbo].[Books] (Table)
+
+** Supporting actions
+
+The type for column Cover in table [dbo].[Books] is currently  IMAGE NULL but is being changed to  VARCHAR (50) NULL. There is no implicit or explicit conversion.
+

@@ -3,6 +3,9 @@
     ViewBag.Title = "Books";
     Layout = "~/Views/_Layout.cshtml";
 }
+
+@using (Html.BeginForm("UploadBook", "Books", FormMethod.Post, new { id = "bookUpload", enctype = "multipart/form-data" }))
+{
     <table id="test" class="display compact cell-border">
         <thead>
             <tr>
@@ -19,7 +22,7 @@
             </tr>
         </tbody>
     </table>
-
+}
 @section Scripts
 {
     <script src="@Url.Content("~/Scripts/tableDisplay.js")"></script>

@@ -8,17 +8,10 @@ namespace Model.Models.Mapping
         public BookMap()
         {
             // Primary Key
-            this.HasKey(t => new { t.Name, t.PublishDate, t.Author });
+            this.HasKey(t => new { t.Name, t.PublishDate });
 
             // Properties
-            this.Property(t => t.Cover)
-                .HasMaxLength(50);
-
             this.Property(t => t.Name)
-                .IsRequired()
-                .HasMaxLength(50);
-
-            this.Property(t => t.Author)
                 .IsRequired()
                 .HasMaxLength(50);
 
@@ -27,7 +20,7 @@ namespace Model.Models.Mapping
             this.Property(t => t.Cover).HasColumnName("Cover");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.PublishDate).HasColumnName("PublishDate");
-            this.Property(t => t.Author).HasColumnName("Author");
+            this.Property(t => t.AuthorId).HasColumnName("AuthorId");
         }
     }
 }

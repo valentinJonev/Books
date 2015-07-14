@@ -22,3 +22,11 @@ c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Test
 c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\BooksUI.Tests.dll.config
 c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\System.Web.Optimization.dll
 c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\System.Web.Optimization.xml
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\OneTrueError.Reporting.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\OneTrueError.AspNet.Mvc5.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\OneTrueError.Reporting.pdb
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\OneTrueError.Reporting.xml
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\OneTrueError.AspNet.Mvc5.pdb
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\OneTrueError.AspNet.Mvc5.xml
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI.Tests\bin\Debug\Newtonsoft.Json.xml

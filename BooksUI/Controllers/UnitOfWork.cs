@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using Model.Models;
 using System.Data.Entity.Validation;
+using System.Data.Entity;
 
 namespace BooksUI.Controllers
 {
-    class UnitOfWork
+    public class UnitOfWork: IUnitOfWork
     {
         private BooksContext context = new BooksContext();
-        private GenericRepository<User> userRepository;
-        private GenericRepository<Book> bookRepository;
-        private GenericRepository<Author> authorRepository;
+        private IGenericRepository<User> userRepository;
+        private IGenericRepository<Book> bookRepository;
+        private IGenericRepository<Author> authorRepository;
 
 
-        public GenericRepository<Book> BookRepository
+        public IGenericRepository<Book> BookRepository
         {
             get 
             {
@@ -27,7 +28,7 @@ namespace BooksUI.Controllers
             }
         }
         
-        public GenericRepository<User> UserRepository
+        public IGenericRepository<User> UserRepository
         {
             get 
             {
@@ -39,7 +40,7 @@ namespace BooksUI.Controllers
             }
         }
 
-        public GenericRepository<Author> AuthorRepository
+        public IGenericRepository<Author> AuthorRepository
         {
             get
             {

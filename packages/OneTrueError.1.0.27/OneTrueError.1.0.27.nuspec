@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>OneTrueError</id>
+    <version>1.0.27</version>
+    <title>OneTrueError reporting service</title>
+    <authors>Gauffin Interactive AB</authors>
+    <owners>Gauffin Interactive AB</owners>
+    <projectUrl>http://onetrueerror.com/</projectUrl>
+    <iconUrl>https://onetrueerror.com/images/ote_50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>OneTrueError makes it trivial to handle exceptions in .NET. All you need is this nuget package and two lines of code to get started.
+
+OneTrueError detects duplicate exceptions and allows you to notify your phone or mailbox on new exceptions.</description>
+    <summary>Automated error handling and analytics for .NET.</summary>
+    <releaseNotes>A bit more features and collectors.</releaseNotes>
+    <copyright>Gauffin Interactive AB</copyright>
+    <language>en-US</language>
+    <tags>error analytics exceptions errorpage</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="5.0.1" />
+    </dependencies>
+  </metadata>
+</package>

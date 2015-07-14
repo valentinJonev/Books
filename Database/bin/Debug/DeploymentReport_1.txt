@@ -1,0 +1,17 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       [dbo].[PK_Books] on [dbo].[Books]
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       on [dbo].[Books].[BookId] (Default Constraint)
+     Create
+       [dbo].[PK_Books] (Primary Key)
+
+** Supporting actions

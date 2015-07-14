@@ -1,5 +1,5 @@
-c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\bin\Debug\Database.dacpac
-c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\bin\Debug\Database.dll
-c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\bin\Debug\Database.pdb
-c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\obj\Debug\Database.dll
-c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\obj\Debug\Database.pdb
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\bin\Debug\Database.dacpac
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\bin\Debug\Database.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\bin\Debug\Database.pdb
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\obj\Debug\Database.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\obj\Debug\Database.pdb

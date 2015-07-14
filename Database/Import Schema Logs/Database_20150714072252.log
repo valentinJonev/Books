@@ -1,0 +1,76 @@
+14.7.2015 г. 10:22:52 ч.	This log contains information about the import schema operation into project 'Database' on computer 'VALENTINY-V' by user 'valentin.yonev'.
+14.7.2015 г. 10:22:52 ч.	Import of database schema has started.
+14.7.2015 г. 10:23:02 ч.	Gathering database options
+14.7.2015 г. 10:23:02 ч.	Gathering users
+14.7.2015 г. 10:23:02 ч.	Gathering roles
+14.7.2015 г. 10:23:02 ч.	Gathering application roles
+14.7.2015 г. 10:23:02 ч.	Gathering role memberships
+14.7.2015 г. 10:23:02 ч.	Gathering filegroups
+14.7.2015 г. 10:23:02 ч.	Gathering full-text catalogs
+14.7.2015 г. 10:23:02 ч.	Gathering assemblies
+14.7.2015 г. 10:23:02 ч.	Gathering certificates
+14.7.2015 г. 10:23:02 ч.	Gathering asymmetric keys
+14.7.2015 г. 10:23:02 ч.	Gathering symmetric keys
+14.7.2015 г. 10:23:02 ч.	Gathering encrypted symmetric keys
+14.7.2015 г. 10:23:02 ч.	Gathering schemas
+14.7.2015 г. 10:23:02 ч.	Gathering XML schema collections
+14.7.2015 г. 10:23:02 ч.	Gathering user-defined data types
+14.7.2015 г. 10:23:02 ч.	Gathering user-defined types
+14.7.2015 г. 10:23:02 ч.	Gathering table types
+14.7.2015 г. 10:23:02 ч.	Gathering unique keys for table types
+14.7.2015 г. 10:23:02 ч.	Gathering primary keys for table types
+14.7.2015 г. 10:23:02 ч.	Gathering check constraints for table types
+14.7.2015 г. 10:23:02 ч.	Gathering default constraints for table types
+14.7.2015 г. 10:23:02 ч.	Gathering partition functions
+14.7.2015 г. 10:23:02 ч.	Gathering partition schemes
+14.7.2015 г. 10:23:02 ч.	Gathering functions
+14.7.2015 г. 10:23:02 ч.	Gathering encrypted functions
+14.7.2015 г. 10:23:02 ч.	Gathering aggregates
+14.7.2015 г. 10:23:02 ч.	Gathering procedures
+14.7.2015 г. 10:23:02 ч.	Gathering encrypted procedures
+14.7.2015 г. 10:23:02 ч.	Gathering tables
+14.7.2015 г. 10:23:03 ч.	Gathering primary keys
+14.7.2015 г. 10:23:03 ч.	Gathering unique constraints
+14.7.2015 г. 10:23:03 ч.	Gathering foreign keys
+14.7.2015 г. 10:23:03 ч.	Gathering default constraints
+14.7.2015 г. 10:23:03 ч.	Gathering check constraints
+14.7.2015 г. 10:23:03 ч.	Gathering views
+14.7.2015 г. 10:23:03 ч.	Gathering encrypted views
+14.7.2015 г. 10:23:03 ч.	Gathering indexes
+14.7.2015 г. 10:23:03 ч.	Gathering statistics
+14.7.2015 г. 10:23:03 ч.	Gathering full-text index stoplists
+14.7.2015 г. 10:23:03 ч.	Gathering search property lists
+14.7.2015 г. 10:23:03 ч.	Gathering search properties
+14.7.2015 г. 10:23:03 ч.	Gathering full-text indexes
+14.7.2015 г. 10:23:03 ч.	Gathering column store indexes
+14.7.2015 г. 10:23:03 ч.	Gathering spatial indexes
+14.7.2015 г. 10:23:03 ч.	Gathering XML indexes
+14.7.2015 г. 10:23:03 ч.	Gathering Selective XML indexes
+14.7.2015 г. 10:23:03 ч.	Gathering encrypted triggers
+14.7.2015 г. 10:23:03 ч.	Gathering triggers
+14.7.2015 г. 10:23:03 ч.	Gathering encrypted and clr ddl triggers
+14.7.2015 г. 10:23:03 ч.	Gathering ddl triggers
+14.7.2015 г. 10:23:03 ч.	Gathering synonyms
+14.7.2015 г. 10:23:03 ч.	Gathering defaults
+14.7.2015 г. 10:23:03 ч.	Gathering data constraint uddt bindings
+14.7.2015 г. 10:23:03 ч.	Gathering rules
+14.7.2015 г. 10:23:03 ч.	Gathering data constraint uddt bindings
+14.7.2015 г. 10:23:03 ч.	Gathering message types
+14.7.2015 г. 10:23:03 ч.	Gathering queues
+14.7.2015 г. 10:23:03 ч.	Gathering contracts
+14.7.2015 г. 10:23:03 ч.	Gathering services
+14.7.2015 г. 10:23:03 ч.	Gathering event notifications
+14.7.2015 г. 10:23:03 ч.	Gathering remote service bindings
+14.7.2015 г. 10:23:03 ч.	Gathering broker priorities
+14.7.2015 г. 10:23:03 ч.	Gathering signatures
+14.7.2015 г. 10:23:03 ч.	Gathering data compression options
+14.7.2015 г. 10:23:03 ч.	Gathering sequence types
+14.7.2015 г. 10:23:03 ч.	Gathering extended properties
+14.7.2015 г. 10:23:03 ч.	Gathering credentials
+14.7.2015 г. 10:23:03 ч.	Gathering logins
+14.7.2015 г. 10:23:03 ч.	Gathering server audits
+14.7.2015 г. 10:23:03 ч.	Scanning project for duplicate elements
+14.7.2015 г. 10:23:03 ч.	Finished duplicate element processing
+14.7.2015 г. 10:23:03 ч.	Finished importing database.
+14.7.2015 г. 10:23:03 ч.	A summary of the import was saved to the following location: C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\Import Schema Logs\Database_20150714072252.log
+14.7.2015 г. 10:23:03 ч.	Click Finish to continue...

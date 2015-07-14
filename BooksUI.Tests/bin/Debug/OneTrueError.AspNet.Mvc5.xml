@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OneTrueError.AspNet.Mvc5</name>
+    </assembly>
+    <members>
+        <member name="T:OneTrueError.Reporting.AspNet.AspNetFileIO.AspNetDataStorageFactory">
+            <summary>
+                Saves the files in the <c>App_Data\OneTrueError\</c> directory.
+            </summary>
+        </member>
+        <member name="M:OneTrueError.Reporting.AspNet.AspNetFileIO.AspNetDataStorageFactory.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:OneTrueError.Reporting.Storage.Implementations.AppDataStorageFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:OneTrueError.Reporting.AspNet.AspNetFileIO.AspNetDataStorageFactory.Open(System.String)">
+            <summary>
+            Open the storage
+            </summary>
+            <param name="name">Name, like a folder name</param>
+            <returns>
+            Storage
+            </returns>
+            <exception cref="T:System.ArgumentNullException">name</exception>
+        </member>
+        <member name="M:OneTrueError.Reporting.AspNet.AspNetFileIO.AspNetDataStorageFactory.Create">
+            <summary>
+            Create a new ASP.NET storage factory
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:OneTrueError.Reporting.AspNet.ConfigureAppDataFolderException">
+            <summary>
+                OneTrueError requires that the 'App_Data' folder exists and that the IIS AppPool account (typicall  'IUSR') have write
+                permissions to it.
+                The folder is used to temporarily store all error reports until they have been successfully uploaded to
+                OneTrueError
+            </summary>
+        </member>
+        <member name="M:OneTrueError.Reporting.AspNet.ConfigureAppDataFolderException.#ctor(System.Exception)">
+            <summary>
+                Initializes a new instance of the <see cref="T:OneTrueError.Reporting.AspNet.ConfigureAppDataFolderException"/> class.
+            </summary>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="T:OneTrueError.Reporting.AspNet.ContextProviders.FileProvider">
+            <summary>
+                Collects information about all files which was uploaded in the HTTP request. The collection is named <c>HttpRequestFiles</c>.
+            </summary>
+            <remarks>Collects name, content type and file name.</remarks>
+        </member>
+        <member name="M:OneTrueError.Reporting.AspNet.ContextProviders.FileProvider.Collect(OneTrueError.Reporting.Reporters.IErrorReporterContext)">
+            <summary>
+                Collect information
+            </summary>
+            <param name="context">Context information provided by the class which reported the error.</param>
+            <returns>
+                Collection. Items with multiple values are joined using <c>";;"</c>
+            </returns>
+        </member>
+        <member name="P:OneTrueError.Reporting.AspNet.ContextProviders.FileProvider.Name">
+            <summary>
+            Gets "HttpRequestFiles"
+            </summary>
+        </member>
+        <member name="T:OneTrueError.Reporting.AspNet.ContextProviders.FormProvider">
+            <summary>
+            Adds a HTTP request form collection.
+            </summary>
+            <remarks>The name of the collection is <c>HttpForm</c></remarks>
+        </member>
+        <member name="M:OneTrueError.Reporting.AspNet.ContextProviders.FormProvider.Collect(OneTrueError.Reporting.Reporters.IErrorReporterContext)">
+            <summary>
+            Collect information
+            </summary>
+            <param name="context"></param>
+            <returns>Collection</returns>
+        </member>
+        <member name="P:OneTrueError.Reporting.AspNet.ContextProviders.FormProvider.Name">
+            <summary>
+            Gets "HttpForm"
+            </summary>
+        </member>
+        <member name="T:OneTrueError.Reporting.AspNet.ContextProviders.HttpHeadersProvider">
+            <summary>
+                assembles all HTTP headers from the request.
+            </summary>
+            <remarks>They will be added to a collection called <c>HttpHeaders</c>.</remarks>
+        </member>
+        <member name="M:OneTrueError.Reporting.AspNet.ContextProviders.HttpHeadersProvider.Collect(OneTrueError.Reporting.Reporters.IErrorReporterContext)">
+            <summary>
+                Collect information
+            </summary>
+            <param name="context">Context information provided by the class which reported the error.</param>
+            <returns>
+                Collection. Items with multiple values are joined using <c>";;"</c>
+            </returns>
+        </member>
+        <member name="P:OneTrueError.Reporting.AspNet.ContextProviders.HttpHeadersProvider.Name">
+            <summary>
+            Gets "HttpHeaders"
+            </summary>
+        </member>
+        <member name="T:OneTrueError.Reporting.AspNet.ContextProviders.QueryStringProvider">
+            <summary>
+            Adds a HTTP request query string collection.
+            </summary>
+            <remarks>The name of the collection is <c>HttpQueryString</c></remarks>
+        </member>
+        <member name="M:OneTrueError.Reporting.AspNet.ContextProviders.QueryStringProvider.Collect(OneTrueError.Reporting.Reporters.IErrorReporterContext)">
+            <summary>
+            Collect information
+            </summary>
+            <param name="context"></param>
+            <returns>Collection</returns>
+        </member>
+        <member name="P:OneTrueError.Reporting.AspNet.ContextProviders.QueryStringProvider.Name">
+            <summary>
+            Gets "HttpQueryString"
+            </summary>
+        </member>
+        <member name="T:OneTrueError.Reporting.AspNet.ContextProviders.SessionProvider">
+            <summary>
+                Adds a HTTP request query string collection (<c>"HttpSession"</c>)
+            </summary>
+            <remarks>
+                <para>The name of the collection is <c>HttpSession</c>.</para>
+                <para>Session objects are serialized as JSON, strings are added as-is.</para>
+            </remarks>
+        </member>
+        <member name="M:OneTrueError.Reporting.AspNet.ContextProviders.SessionProvider.Collect(OneTrueError.Reporting.Reporters.IErrorReporterContext)">
+            <summary>
+                Collect information
+            </summary>
+            <param name="context"></param>
+            <returns>Collection</returns>
+        </member>
+        <member name="P:OneTrueError.Reporting.AspNet.ContextProviders.SessionProvider.Name">
+            <summary>
+            Gets "HttpSession"
+            </summary>
+        </member>
+        <member name="M:OneTrueError.AspNet.Mvc5.ConfigurationExtensions.DelayAndReportFolderProblem(System.Exception)">
+            <summary>
+                Delaying since we want to make sure that everything is configured before sending the report.
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:OneTrueError.AspNet.Mvc5.Implementation.BuiltInViewRender.Render(OneTrueError.AspNet.Mvc5.Implementation.HttpErrorReporterContext)">
+            <summary>
+            Build an ASPX or HTML file to be used as our error page.
+            </summary>
+            <param name="context">Context for OneTrueError</param>
+            <returns>Complete string</returns>
+        </member>
+        <member name="T:OneTrueError.AspNet.Mvc5.Implementation.HttpErrorReporterContext">
+            <summary>
+                Context used when collecting error information (when an error have been caught).
+            </summary>
+        </member>
+        <member name="M:OneTrueError.AspNet.Mvc5.Implementation.HttpErrorReporterContext.#ctor(System.Object,System.Exception,System.Web.HttpContextBase)">
+            <summary>
+                Initializes a new instance of the <see cref="T:OneTrueError.AspNet.Mvc5.Implementation.HttpErrorReporterContext"/> class.
+            </summary>
+            <param name="reporter">The reporter.</param>
+            <param name="exception">The exception.</param>
+            <param name="context"></param>
+        </member>
+        <member name="P:OneTrueError.AspNet.Mvc5.Implementation.HttpErrorReporterContext.HttpContext">
+            <summary>
+                Gets ASP.NET context
+            </summary>
+        </member>
+        <member name="P:OneTrueError.AspNet.Mvc5.Implementation.HttpErrorReporterContext.ErrorId">
+            <summary>
+            Id generated by OneTrueError
+            </summary>
+            <remarks>
+            <para>
+            Can be used to allow the user to check status of this error through our homepage.
+            </para>
+            <para>
+            You can generate your own ids by customizing <see cref="T:OneTrueError.Reporting.ReportIdGenerator"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:OneTrueError.AspNet.Mvc5.Implementation.HttpErrorReporterContext.HttpStatusCode">
+            <summary>
+            Http status code
+            </summary>
+        </member>
+        <member name="P:OneTrueError.AspNet.Mvc5.Implementation.HttpErrorReporterContext.HttpStatusCodeName">
+            <summary>
+            Name for the status code (pascal case)
+            </summary>
+        </member>
+        <member name="T:OneTrueError.AspNet.Mvc5.AspNetFileIO.MemoryStorage">
+            <summary>
+                Used to store information in the memory when we do not got write access to the ASP.NET folder.
+            </summary>
+        </member>
+        <member name="M:OneTrueError.AspNet.Mvc5.AspNetFileIO.MemoryStorage.Load(System.String)">
+            <summary>
+                Get item
+            </summary>
+            <param name="id">Report identification (<see cref="P:OneTrueError.Reporting.Contracts.ErrorReportDTO.ReportId"/>).</param>
+            <returns>
+                Item
+            </returns>
+        </member>
+        <member name="T:OneTrueError.AspNet.Mvc5.OneTrueErrorFilter">
+            <summary>
+            Used to be able to catch MVC specific data when an error occur.
+            </summary>
+        </member>
+        <member name="T:OneTrueError.AspNet.Mvc5.OneTrueViewModel">
+            <summary>
+            View model for all error pages used by this plugin.
+            </summary>
+        </member>
+        <member name="P:OneTrueError.AspNet.Mvc5.OneTrueViewModel.Exception">
+            <summary>
+                Caught exception
+            </summary>
+        </member>
+        <member name="P:OneTrueError.AspNet.Mvc5.OneTrueViewModel.HttpStatusCode">
+            <summary>
+                Http status code. Typically 404 or 500
+            </summary>
+        </member>
+        <member name="P:OneTrueError.AspNet.Mvc5.OneTrueViewModel.HttpStatusCodeName">
+            <summary>
+                Name of HTTP Status Code, like "InternalServerError"
+            </summary>
+        </member>
+        <member name="P:OneTrueError.AspNet.Mvc5.OneTrueViewModel.ErrorId">
+            <summary>
+                OneTrueError error id
+            </summary>
+        </member>
+    </members>
+</doc>

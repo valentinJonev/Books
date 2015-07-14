@@ -4,14 +4,15 @@
     Layout = "~/Views/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("UploadBook", "Books", FormMethod.Post, new { id = "bookUpload", enctype = "multipart/form-data" }))
+@using (Html.BeginForm(MVC.Books.UploadBook(), FormMethod.Post, new { id = "bookUpload", enctype = "multipart/form-data" }))
 {
-    <table id="test" class="display compact cell-border">
+    @Html.ValidationSummary()
+    <table id="test" style="text-align:center;" class="display compact cell-border">
         <thead>
             <tr>
                 <th>Cover</th>
                 <th>Title</th>
-                <th>Publish date</th>
+                <th>Publish year</th>
                 <th>Author</th>
             </tr>
         </thead>

@@ -6,7 +6,7 @@
 
 <h2>Register</h2>
 
-@using (Html.BeginForm("Register", "User", FormMethod.Post, new { @class = "col-md-4" }))
+@using (Html.BeginForm(MVC.User.Register(), FormMethod.Post, new { @class = "col-md-4" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()

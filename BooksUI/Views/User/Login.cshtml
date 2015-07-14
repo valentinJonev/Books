@@ -6,7 +6,7 @@
 
 <h2>Login</h2>
 
-@using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "col-md-3" }))
+@using (Html.BeginForm(MVC.User.Login(), FormMethod.Post, new { @class = "col-sm-3" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -19,6 +19,6 @@
         @Html.PasswordFor(m => m.Password, new { @class = "form-control" }) 
     </div>
     <input type="submit" value="Login" class="btn btn-default" />
-    <span>Don't have an account? Then  @Html.ActionLink("register", "Register")!</span>
+    <span>Don't have an account? Then  @Html.ActionLink("register", MVC.User.Register())!</span>
 }   
     

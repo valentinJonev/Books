@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>OneTrueError.aspnet.mvc5</id>
+    <version>1.0.0</version>
+    <title>OneTrueError reporting service - ASP.NET MVC5 integration</title>
+    <authors>Gauffin Interactive AB</authors>
+    <owners>Gauffin Interactive AB</owners>
+    <projectUrl>https://onetrueerror.com/docs/client/aspnet/mvc5/package</projectUrl>
+    <iconUrl>https://onetrueerror.com/images/ote_50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>OneTrueError is a .NET error handling &amp; analytics service. It makes it trivial to capture and analyze exceptions in all kinds of .NET applications.
+
+The entire process is automated and it takes less than two minutes to activate the service in your application.
+
+This package automates the process of collecting everything related to MVC5, such as routing, ViewBag, TempData etc.
+
+It also allows you to get much better error handling.</description>
+    <summary>Once you've installed this package you'll never have to worry again about not getting enough information to be able to reproduce and correct errors.</summary>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Gauffin Interactive AB</copyright>
+    <language>en-US</language>
+    <tags>error analytics exceptions asp.net mvc5 error-handling</tags>
+    <dependencies>
+      <dependency id="OneTrueError" version="1.0.27" />
+    </dependencies>
+  </metadata>
+</package>

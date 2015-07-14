@@ -1,0 +1,20 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       [dbo].[PK_Book] on [dbo].[Books]
+     Possible data issues
+       None
+
+** User actions
+     Alter
+       [dbo].[Books] (Table)
+     Create
+       [dbo].[PK_Book] (Primary Key)
+
+** Supporting actions
+
+The column AuthorId on table [dbo].[Books] must be changed from NULL to NOT NULL. If the table contains data, the ALTER script may not work. To avoid this issue, you must add values to this column for all rows or mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+

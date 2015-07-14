@@ -6,17 +6,17 @@ using System.Web.Mvc;
 
 namespace BooksUI.Controllers
 {
-    public class HomeController : Controller
+    public partial class HomeController : Controller
     {
         //
         // GET: /Home/
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             if (Session["User"] != null)
             {
                 return View();
             }
-            return RedirectToAction("Login", "User");
+            return RedirectToAction(MVC.User.Login());
         }
 	}
 }

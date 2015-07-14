@@ -7,55 +7,59 @@ using Model.Models;
 
 namespace BooksUI.Controllers
 {
-    public class UserController : Controller
+    public partial class UserController : Controller
     {
-        UnitOfWork unitOfWork = new UnitOfWork();
+        private IUnitOfWork unitOfWork;
+        public UserController(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
 
         [HttpGet]
-        public ActionResult Login()
+        public virtual ActionResult Login()
         {
             if (Session["User"] != null)
             {
-                return RedirectToAction("Index", "Home");   
+                return RedirectToAction(MVC.Home.Index());   
             }
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(string Username, string Password)
+        public virtual ActionResult Login(string Username, string Password)
         {
             var user = unitOfWork.UserRepository.Get(u => u.Username == Username && u.Password == Password);
             if (user.Count() > 0)
             {
                 Session["User"] = user.First();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(MVC.Home.Index());
             }
             ModelState.AddModelError("error", "Invalid username or password!");
             return View();
         }
 
         [HttpGet]
-        public ActionResult Register()
+        public virtual ActionResult Register()
         {
             if (Session["User"] != null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(MVC.Home.Index());
             }
             return View();
         }
 
         [HttpPost]
-        public ActionResult Register(string Username, string Password, string RepeatPassword, int Age)
+        public virtual ActionResult Register(string Username, string Password, string RepeatPassword, int Age)
         {
             if (Password == RepeatPassword)
             {
-                if (unitOfWork.UserRepository.Get(u => u.Username == Username) == null)
+                if (unitOfWork.UserRepository.Get(u => u.Username == Username).Count() == 0)
                 {
                     Random random = new Random();
                     User user = new User { Id = random.Next(0, 25565), Username = Username, Password = Password, Age = Age };
                     unitOfWork.UserRepository.Insert(user);
                     unitOfWork.Save();
-                    return View("Login");
+                    return View(MVC.User.Login());
                 }
                 ModelState.AddModelError("error", "User already registered!");
                 return View();
@@ -64,13 +68,13 @@ namespace BooksUI.Controllers
             return View();
         }
 
-        public ActionResult Logout()
+        public virtual ActionResult Logout()
         {
             if (Session["User"] != null)
             {
                 Session.Abandon();
             }
-            return RedirectToAction("Login");
+            return RedirectToAction(MVC.User.Login());
         }
     }
 }

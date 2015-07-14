@@ -12,24 +12,27 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Books</a>
+            @Html.ActionLink("Books", MVC.Home.Index(), new { @class="navbar-brand" })
         </div>
             @if (user != null)
             {
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <p class="navbar-text">Welcome @user.Username</p>
-                    <form class="navbar-form clearfix" style="display:inline-block">
+                    @if (ViewBag.Title == "Books")
+                    {
+                        <form class="navbar-form clearfix" style="display:inline-block">
                         <div class="form-group">
                             <input type="text" class="form-control" name="Title" id="Title" placeholder="Search by title">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="Author" id="Author" placeholder="Search by author">
                         </div>
-                        <button type="submit" onclick="search('submit')" class="btn btn-default">Search</button>
+                        <button type="button" onclick="search('submit')" class="btn btn-default">Search</button>
                         <button type="reset" onclick="search('clear')" class="btn btn-default">Clear</button>
 
                     </form>
-                    @using (Html.BeginForm("Logout", "User", FormMethod.Post, new { @class = "navbar-form navbar-right" }))
+                    }
+                    @using (Html.BeginForm(MVC.User.Logout(), FormMethod.Post, new { @class = "navbar-form navbar-right" }))
                     {
                         <button class="btn btn-default" type="submit"> Logout </button>
                     }

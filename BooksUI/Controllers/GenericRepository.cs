@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace BooksUI.Controllers
 {
-    class GenericRepository<TEntity> where TEntity : class
+    class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         internal BooksContext context;
         internal DbSet<TEntity> dbSet;

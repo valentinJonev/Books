@@ -49,6 +49,7 @@
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BooksContext.cs" />
+    <Compile Include="Models\IDbContext.cs" />
     <Compile Include="Models\Mapping\AuthorMap.cs" />
     <Compile Include="Models\Mapping\BookMap.cs" />
     <Compile Include="Models\Mapping\UserMap.cs" />

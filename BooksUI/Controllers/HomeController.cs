@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace BooksUI.Controllers
+﻿namespace BooksUI.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
     public partial class HomeController : Controller
     {
-        //
-        // GET: /Home/
         public virtual ActionResult Index()
         {
-            if (Session["User"] != null)
+            if (this.Session["User"] != null)
             {
-                return View();
+                return this.View();
             }
-            return RedirectToAction(MVC.User.Login());
+
+            return this.RedirectToAction(MVC.User.Login());
         }
-	}
+    }
 }

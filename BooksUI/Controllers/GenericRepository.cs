@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Model.Models;
-using System.Data.Entity;
-using System.Linq.Expressions;
-
-namespace BooksUI.Controllers
+﻿namespace BooksUI.Controllers
 {
-    class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Data.Entity;
+    using System.Linq.Expressions;
+    using Model.Models;
+
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        internal BooksContext context;
-        internal DbSet<TEntity> dbSet;
+        private BooksContext context;
+        private DbSet<TEntity> dbSet;
 
         public GenericRepository(BooksContext context)
         {
@@ -24,15 +24,14 @@ namespace BooksUI.Controllers
            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
            string includeProperties = "")
         {
-            IQueryable<TEntity> query = dbSet;
+            IQueryable<TEntity> query = this.dbSet;
 
             if (filter != null)
             {
                 query = query.Where(filter);
             }
 
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 query = query.Include(includeProperty);
             }
@@ -49,33 +48,34 @@ namespace BooksUI.Controllers
 
         public virtual TEntity GetByID(object id)
         {
-            return dbSet.Find(id);
+            return this.dbSet.Find(id);
         }
 
         public virtual void Insert(TEntity entity)
         {
-            dbSet.Add(entity);
+            this.dbSet.Add(entity);
         }
 
         public virtual void Delete(object id)
         {
-            TEntity entityToDelete = dbSet.Find(id);
-            Delete(entityToDelete);
+            TEntity entityToDelete = this.dbSet.Find(id);
+            this.Delete(entityToDelete);
         }
 
         public virtual void Delete(TEntity entityToDelete)
         {
-            if (context.Entry(entityToDelete).State == EntityState.Detached)
+            if (this.context.Entry(entityToDelete).State == EntityState.Detached)
             {
-                dbSet.Attach(entityToDelete);
+                this.dbSet.Attach(entityToDelete);
             }
-            dbSet.Remove(entityToDelete);
+
+            this.dbSet.Remove(entityToDelete);
         }
 
         public virtual void Update(TEntity entityToUpdate)
         {
-            dbSet.Attach(entityToUpdate);
-            context.Entry(entityToUpdate).State = EntityState.Modified;
+            this.dbSet.Attach(entityToUpdate);
+            this.context.Entry(entityToUpdate).State = EntityState.Modified;
         }
     }
 }

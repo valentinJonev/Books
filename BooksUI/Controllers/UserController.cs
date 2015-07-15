@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Model.Models;
-
-namespace BooksUI.Controllers
+﻿namespace BooksUI.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using Model.Models;
+
     public partial class UserController : Controller
     {
         private IUnitOfWork unitOfWork;
+
         public UserController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
@@ -18,34 +19,37 @@ namespace BooksUI.Controllers
         [HttpGet]
         public virtual ActionResult Login()
         {
-            if (Session["User"] != null)
+            if (this.Session["User"] != null)
             {
-                return RedirectToAction(MVC.Home.Index());   
+                return this.RedirectToAction(MVC.Home.Index());   
             }
-            return View();
+
+            return this.View();
         }
 
         [HttpPost]
         public virtual ActionResult Login(string Username, string Password)
         {
-            var user = unitOfWork.UserRepository.Get(u => u.Username == Username && u.Password == Password);
+            var user = this.unitOfWork.UserRepository.Get(u => u.Username == Username && u.Password == Password);
             if (user.Count() > 0)
             {
-                Session["User"] = user.First();
-                return RedirectToAction(MVC.Home.Index());
+                this.Session["User"] = user.First();
+                return this.RedirectToAction(MVC.Home.Index());
             }
+
             ModelState.AddModelError("error", "Invalid username or password!");
-            return View();
+            return this.View();
         }
 
         [HttpGet]
         public virtual ActionResult Register()
         {
-            if (Session["User"] != null)
+            if (this.Session["User"] != null)
             {
-                return RedirectToAction(MVC.Home.Index());
+                return this.RedirectToAction(MVC.Home.Index());
             }
-            return View();
+
+            return this.View();
         }
 
         [HttpPost]
@@ -53,28 +57,32 @@ namespace BooksUI.Controllers
         {
             if (Password == RepeatPassword)
             {
-                if (unitOfWork.UserRepository.Get(u => u.Username == Username).Count() == 0)
+                if (this.unitOfWork.UserRepository.Get(u => u.Username == Username).Count() == 0)
                 {
                     Random random = new Random();
                     User user = new User { Id = random.Next(0, 25565), Username = Username, Password = Password, Age = Age };
-                    unitOfWork.UserRepository.Insert(user);
-                    unitOfWork.Save();
-                    return View(MVC.User.Login());
+                    this.unitOfWork.UserRepository.Insert(user);
+                    this.unitOfWork.Save();
+                    return this.View(MVC.User.Login());
                 }
+
                 ModelState.AddModelError("error", "User already registered!");
-                return View();
+                return this.View();
             }
+
             ModelState.AddModelError("error", "Passwords do not mach!");
-            return View();
+            return this.View();
         }
 
         public virtual ActionResult Logout()
         {
-            if (Session["User"] != null)
+            if (this.Session["User"] != null)
             {
                 Session.Abandon();
+                this.unitOfWork.Dispose();
             }
-            return RedirectToAction(MVC.User.Login());
+
+            return this.RedirectToAction(MVC.User.Login());
         }
     }
 }

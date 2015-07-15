@@ -8,26 +8,31 @@ function LoadData() {
         dataType: "json"
     }).done(function (_data) {
         data = _data
-        count = Object.keys(data).length
+        var count = Object.keys(data).length
         for (var i = 0; i < count; i++) {
             var epochValue = parseInt(data[i]['PublishDate'].replace('/Date(', '').replace(")/", ""));
             var date = new Date(epochValue).toLocaleString();
             var _date = new Date(date);
             data[i]['PublishDate'] = _date.getFullYear()
-            if (data[i]["Cover"] != null) {
-                data[i]["Cover"] = '<img width="120" height="120" src="' + data[i]["Cover"] + '">'
+            var cover = data[i]['Cover'];
+            data[i]['Cover'] = '<div class="col-md-6"><a href="#" class="thumbnail">'
+            if (cover != null) {
+                data[i]["Cover"] += '<img src="' + cover + '">'
             }
             else {
-                data[i]["Cover"] = '<img  src="http://i.imgur.com/sJ3CT4V.gif" height=100>'
+                data[i]["Cover"] += '<img  src="http://i.imgur.com/sJ3CT4V.gif" height=100>'
             }
+
+            data[i]["Cover"] += '</a></div>'
+            data[i]['Edit'] = "<td><a href='/Books/Delete/" + data[i]['Name'] + "'><span class='glyphicon glyphicon-trash' style='font-size: 24px; margin: 15px' aria-hidden='true'></span></a><a href='/Books/Edit/" + data[i]['Name'] + "'><span class='glyphicon glyphicon-pencil' style='font-size: 24px; margin: 15px' aria-hidden='true'></span></td>"
         }
         $.ajax({
             type: "post",
             url: "/Authors/Index",
             dataType: "json"
         }).done(function (d) {
-            _count = Object.keys(d).length
-            var select = '<select name="Author">'
+            var _count = Object.keys(d).length
+            var select = '<select name="Author" class="form-control">'
             for (var i = 0; i < _count; i++) {
                 for (var j = 0; j < count; j++) {
                     if (data[j]['AuthorId'] == i) data[j]['Author'] = d[i]['Name'];
@@ -36,7 +41,8 @@ function LoadData() {
             }
             select += '</select>'
 
-            data[count] = { 'Cover': '<input type="file" value="Upload cover" accept=".jpg, .jpeg, .png, .gif" name="Cover" id="Cover">', 'Name': "<input type='text' placeholder='Book title' name='Name'>", 'PublishDate': "<input type='text' placeholder='Book publish date' name='Date'>", 'Author': select }
+            data[count] = { 'Cover': '<input type="file" value="Upload cover" accept=".jpg, .jpeg, .png, .gif" name="Cover" id="Cover">', 'Name': "<input type='text' class='form-control' placeholder='Book title' name='Name'>", 'PublishDate': "<input type='text' class='form-control' placeholder='Book publish date' name='Date'>", 'Author': select }
+            data[count]['Edit'] = "<td><button class='btn' type='submit'>Upload book</button></td>"
             LoadTable(data);
         })
     })
@@ -55,12 +61,16 @@ function ReloadData(title, author) {
             var date = new Date(epochValue).toLocaleString();
             var _date = new Date(date);
             data[i]['PublishDate'] = _date.getFullYear()
-            if (data[i]["Cover"] != null) {
-                data[i]["Cover"] = '<img width="120" height="120" src="' + data[i]["Cover"] + '">'
+            var cover = data[i]['Cover'];
+            data[i]['Cover'] = '<div class="col-md-8"><a href="#" class="thumbnail">'
+            if (cover != null) {
+                data[i]["Cover"] += '<img src="' + cover + '">'
             }
             else {
-                data[i]["Cover"] = '<img  src="http://i.imgur.com/sJ3CT4V.gif" height=100>'
+                data[i]["Cover"] += '<img  src="http://i.imgur.com/sJ3CT4V.gif" height=100>'
             }
+            data[i]["Cover"] += '</a></div>'
+            data[i]['Edit'] = "<a href='/Books/Delete/" + data[i]['Name'] + "'><span class='glyphicon glyphicon-trash' style='font-size: 24px; margin: 15px' aria-hidden='true'></span></a><a href='/Books/Edit/" + data[i]['Name'] + "'><span class='glyphicon glyphicon-pencil' style='font-size: 24px; margin: 15px' aria-hidden='true'></span>"
         }
         $.ajax({
             type: "post",
@@ -68,7 +78,7 @@ function ReloadData(title, author) {
             dataType: "json"
         }).done(function (d) {
             _count = Object.keys(d).length
-            var select = '<select name="Author">'
+            var select = '<select name="Author" class="form-control">'
             for (var i = 0; i < _count; i++) {
                 for (var j = 0; j < count; j++) {
                     if (data[j]['AuthorId'] == i) data[j]['Author'] = d[i]['Name'];
@@ -77,7 +87,8 @@ function ReloadData(title, author) {
             }
             select += '</select>'
 
-            data[count] = { 'Cover': '<input type="file" value="Upload cover" accept=".jpg, .jpeg, .png, .gif" name="Cover" id="Cover">', 'Name': "<input type='text' placeholder='Book title' name='Name'>", 'PublishDate': "<input type='text' placeholder='Book publish date' name='Date'>", 'Author': select }
+            data[count] = { 'Cover': '<input type="file" value="Upload cover" accept=".jpg, .jpeg, .png, .gif" name="Cover" id="Cover">', 'Name': "<input type='text' class='form-control' placeholder='Book title' name='Name'>", 'PublishDate': "<input type='text' class='form-control' placeholder='Book publish date' name='Date'>", 'Author': select }
+            data[count]['Edit'] = "<td><button class='btn' type='submit'>Upload book</button></td>"
             ReloadTable(data);
         })
 
@@ -85,44 +96,27 @@ function ReloadData(title, author) {
     })
 }
 function LoadTable() {
-    table = $('#test').dataTable({
+    table = $('#table').dataTable({
         data: data,
         "columns": [
         { "data": "Cover" },
         { "data": "Name" },
         { "data": "PublishDate" },
-        { "data": "Author" }
+        { "data": "Author" },
+        { "data": "Edit" }
         ],
+        "bLengthChange": false,
         "autoWidth": false,
-        columnDefs: [{ "width": "3%", "targets": 0, "orderable": false }],
+        columnDefs: [{ "width": "15%", "targets": 0 }],
         "bFilter": false,
+        "bSort": false,
         responsive: true,
-    });
-
-    $('#test > tbody  > tr').each(function () {
-        $this = $(this)
-        if ($this.context._DT_RowIndex != count) {
-            $this.append("<td><a href='/Books/Delete/" + $this.context.cells[1].innerHTML + "'><img width='30' height='30' src='http://megaicons.net/static/img/icons_sizes/8/178/512/editing-delete-icon.png'></a><a href='/Books/Edit/" + $this.context.cells[1].innerHTML + "'><img width='30' height='30' src='https://simple-for-ever.appspot.com/img/glyphicons_030_pencil_2x.png'></a></td>");
-        }
-        else {
-            $this.append("<td><button class='btn' type='submit'>Upload book</button></td>")
-        }
     });
 }
 
 function ReloadTable(data) {
-    $('#test').dataTable().fnClearTable()
-    $('#test').dataTable().fnAddData(data)
-
-    $('#test > tbody  > tr').each(function () {
-        $this = $(this)
-        if ($this.context._DT_RowIndex != count) {
-            $this.append("<td><a href='/Books/Delete/" + $this.context.cells[1].innerHTML + "'><img width='30' height='30' src='http://megaicons.net/static/img/icons_sizes/8/178/512/editing-delete-icon.png'></a><a href='/Books/Edit/" + $this.context.cells[1].innerHTML + "'><img width='30' height='30' src='https://simple-for-ever.appspot.com/img/glyphicons_030_pencil_2x.png'></a></td>");
-        }
-        else {
-            $this.append("<td><button class='btn' type='submit'>Upload book</button></td>")
-        }
-    });
+    $('#table').dataTable().fnClearTable()
+    $('#table').dataTable().fnAddData(data)
 }
 
 function search(action) {

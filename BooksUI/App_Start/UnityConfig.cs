@@ -1,11 +1,11 @@
-using System;
-using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
-using BooksUI.Controllers;
-using System.Web.Mvc;
-
 namespace BooksUI.App_Start
 {
+    using System;
+    using System.Web.Mvc;
+    using Microsoft.Practices.Unity;
+    using Microsoft.Practices.Unity.Configuration;
+    using BooksUI.Controllers;
+
     /// <summary>
     /// Specifies the Unity configuration for the main container.
     /// </summary>
@@ -22,6 +22,9 @@ namespace BooksUI.App_Start
         /// <summary>
         /// Gets the configured Unity container.
         /// </summary>
+        /// <returns>
+        /// Configured container
+        /// </returns>
         public static IUnityContainer GetConfiguredContainer()
         {
             return container.Value;
@@ -34,14 +37,9 @@ namespace BooksUI.App_Start
         /// change the defaults), as Unity allows resolving a concrete type even if it was not previously registered.</remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
-            // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
-            // container.LoadConfiguration();
-
-            // TODO: Register your types here
-            //
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            container.RegisterType<IController, UserController>("User"); 
+            container.RegisterType<IController, UserController>("User");
         }
     }
 }

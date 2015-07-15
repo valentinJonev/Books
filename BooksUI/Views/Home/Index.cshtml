@@ -7,13 +7,14 @@
 @using (Html.BeginForm(MVC.Books.UploadBook(), FormMethod.Post, new { id = "bookUpload", enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary()
-    <table id="test" style="text-align:center;" class="display compact cell-border">
+    <table id="table" style="text-align:center;" class="display compact cell-border">
         <thead>
             <tr>
                 <th>Cover</th>
                 <th>Title</th>
                 <th>Publish year</th>
                 <th>Author</th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>

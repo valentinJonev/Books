@@ -1,23 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace BooksUI.Controllers
+﻿namespace BooksUI.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
     public partial class AuthorsController : Controller
     {
         private UnitOfWork unitOfWork;
+
         public AuthorsController(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
-         [HttpPost]
+        [HttpPost]
         public virtual ActionResult Index()
         {
-            return Json(unitOfWork.AuthorRepository.Get());
+            return this.Json(this.unitOfWork.AuthorRepository.Get());
         }
-	}
+    }
 }

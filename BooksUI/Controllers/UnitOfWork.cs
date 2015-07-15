@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Model.Models;
-using System.Data.Entity.Validation;
-using System.Data.Entity;
-
-namespace BooksUI.Controllers
+﻿namespace BooksUI.Controllers
 {
-    public class UnitOfWork: IUnitOfWork
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Data.Entity.Validation;
+    using System.Data.Entity;
+    using Model.Models;
+
+    public class UnitOfWork : IUnitOfWork
     {
         private BooksContext context = new BooksContext();
         private IGenericRepository<User> userRepository;
         private IGenericRepository<Book> bookRepository;
         private IGenericRepository<Author> authorRepository;
-
+        private bool disposed = false;
 
         public IGenericRepository<Book> BookRepository
         {
@@ -22,9 +22,10 @@ namespace BooksUI.Controllers
             {
                 if (this.bookRepository == null)
                 {
-                    this.bookRepository = new GenericRepository<Book>(context);
+                    this.bookRepository = new GenericRepository<Book>(this.context);
                 }
-                return bookRepository; 
+
+                return this.bookRepository; 
             }
         }
         
@@ -34,9 +35,10 @@ namespace BooksUI.Controllers
             {
                 if (this.userRepository == null)
                 {
-                    this.userRepository = new GenericRepository<User>(context);   
+                    this.userRepository = new GenericRepository<User>(this.context);   
                 }
-                return userRepository; 
+
+                return this.userRepository; 
             }
         }
 
@@ -46,9 +48,10 @@ namespace BooksUI.Controllers
             {
                 if (this.authorRepository == null)
                 {
-                    this.authorRepository = new GenericRepository<Author>(context);
+                    this.authorRepository = new GenericRepository<Author>(this.context);
                 }
-                return authorRepository;
+
+                return this.authorRepository;
             }
         }
 
@@ -56,26 +59,34 @@ namespace BooksUI.Controllers
         {
             try
             {
-                context.SaveChanges();
+                this.context.SaveChanges();
             }
             catch (DbEntityValidationException e)
             {
                 foreach (var eve in e.EntityValidationErrors)
                 {
-                    System.Diagnostics.Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    System.Diagnostics.Debug.WriteLine(
+                        "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name,
+                        eve.Entry.State);
                     foreach (var ve in eve.ValidationErrors)
                     {
-                        System.Diagnostics.Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
+                        System.Diagnostics.Debug.WriteLine(
+                            "- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName,
+                            ve.ErrorMessage);
                     }
                 }
+
                 throw;
             }
-            
         }
 
-        private bool disposed = false;
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
         protected virtual void Dispose(bool disposing)
         {
@@ -83,17 +94,11 @@ namespace BooksUI.Controllers
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    this.context.Dispose();
                 }
             }
+
             this.disposed = true;
         }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        
     }
 }

@@ -28,8 +28,6 @@
                 .Include("~/Scripts/jquery.dataTables.min.js")
                 .Include("~/Scripts/dataTables.bootstrap.js")
                 .Include("~/Scripts/dataTables.responsive.js"));
-
-            BundleTable.EnableOptimizations = false;
         }
     }
 }

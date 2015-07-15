@@ -66,16 +66,15 @@
             }
 
             int date = 0;
-            if (int.TryParse(Date, out date) && date >= 0 && date < DateTime.MaxValue.Year)
+            if (int.TryParse(Date, out date) && date >= 0 && date < DateTime.MaxValue.Year && Name != string.Empty)
             {
-                Random random = new Random();
-                Book book = new Book { BookId = random.Next(0, 25565), Cover = path, Name = Name, AuthorId = int.Parse(Author), PublishDate = new DateTime(date, 10, 10) };
+                Book book = new Book { Cover = path, Name = Name, AuthorId = int.Parse(Author) + 1, PublishDate = new DateTime(date, 10, 10) };
                 this.unitOfWork.BookRepository.Insert(book);
                 this.unitOfWork.Save();
             }
             else
             {
-                throw new HttpException(500, "Out of range input");
+                throw new HttpException(500, "Server error");
             }
 
             return this.RedirectToAction(MVC.Home.Index());
@@ -83,10 +82,10 @@
 
         public virtual ActionResult Delete(string id)
         {
-            var book = this.unitOfWork.BookRepository.Get(b => b.Name == id);
-            if (book.Count() > 0)
+            Book book = this.unitOfWork.BookRepository.GetByID(int.Parse(id));
+            if (book != null)
             {
-                this.unitOfWork.BookRepository.Delete(book.First());
+                this.unitOfWork.BookRepository.Delete(book);
                 this.unitOfWork.Save();
             }
 
@@ -97,10 +96,11 @@
         {
             if (this.Session["User"] != null)
             {
-                var book = this.unitOfWork.BookRepository.Get(b => b.Name == id);
-                if (book.Count() > 0)
+                Book book = this.unitOfWork.BookRepository.GetByID(int.Parse(id));
+                if (book != null)
                 {
-                    return this.View(book.First());
+                    ViewBag.Authors = this.unitOfWork.AuthorRepository.Get();
+                    return this.View(book);
                 }
 
                 return this.View();
@@ -110,7 +110,7 @@
         }
 
         [HttpPost]
-        public virtual ActionResult Edit(HttpPostedFileBase Cover, string Name, string PublishDate, string AuthorId)
+        public virtual ActionResult Edit(HttpPostedFileBase Cover, string Id, string PublishDate, string AuthorId)
         {
             string path = null;
             if (Cover != null && Cover.ContentLength > 0)
@@ -121,18 +121,17 @@
                 path = "/Images/" + fileName;
             }
 
-            var book = this.unitOfWork.BookRepository.Get(b => b.Name == Name);
-            if (book.Count() > 0)
+            Book book = this.unitOfWork.BookRepository.GetByID(int.Parse(Id));
+            if (book != null)
             {
-                Book b = book.First();
-                b.PublishDate = new DateTime(int.Parse(PublishDate), 10, 10);
-                b.AuthorId = int.Parse(AuthorId);
+                book.PublishDate = new DateTime(int.Parse(PublishDate), 10, 10);
+                book.AuthorId = int.Parse(AuthorId);
                 if (path != null)
                 {
-                    b.Cover = path;
+                    book.Cover = path;
                 }
 
-                this.unitOfWork.BookRepository.Update(b);
+                this.unitOfWork.BookRepository.Update(book);
                 this.unitOfWork.Save();
             }
 

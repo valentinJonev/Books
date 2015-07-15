@@ -1,0 +1,10 @@
+15.7.2015 г. 16:44:04 ч.	This log contains information about the import operation of the script 'db.sql' into project 'Database' on computer 'VALENTINY-V' by user'valentin.yonev.
+15.7.2015 г. 16:44:04 ч.	Started importing file: C:\Users\valentin.yonev\Documents\db.sql 
+15.7.2015 г. 16:44:04 ч.	File name C:\Users\valentin.yonev\Documents\db.sql (size: 2447)
+15.7.2015 г. 16:44:04 ч.	Parsing import script
+15.7.2015 г. 16:44:04 ч.	Total number of batches in script: 34
+15.7.2015 г. 16:44:04 ч.	Total number of statements in script: 0
+15.7.2015 г. 16:44:04 ч.	The script was successfully imported into the project.
+15.7.2015 г. 16:44:05 ч.	In the script that you provided to the import operation, one or more statements were not fully understood. These statements were moved to the ScriptsIgnoredOnImport.sql file. Review the file contents for additional information.
+15.7.2015 г. 16:44:05 ч.	A summary of the import was saved to the following location: C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\Import Script Logs\db_sql_20150715014404.log
+15.7.2015 г. 16:44:05 ч.	Click Finish to continue...

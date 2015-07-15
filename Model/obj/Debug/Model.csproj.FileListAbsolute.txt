@@ -5,6 +5,6 @@ c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\De
 c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\Debug\EntityFramework.SqlServer.dll
 c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\Debug\EntityFramework.xml
 c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\Debug\EntityFramework.SqlServer.xml
-c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\obj\Debug\Model.dll
 c:\users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\obj\Debug\Model.pdb
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

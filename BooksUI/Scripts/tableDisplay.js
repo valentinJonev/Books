@@ -24,7 +24,7 @@ function LoadData() {
             }
 
             data[i]["Cover"] += '</a></div>'
-            data[i]['Edit'] = "<td><a href='/Books/Delete/" + data[i]['Name'] + "'><span class='glyphicon glyphicon-trash' style='font-size: 24px; margin: 15px' aria-hidden='true'></span></a><a href='/Books/Edit/" + data[i]['Name'] + "'><span class='glyphicon glyphicon-pencil' style='font-size: 24px; margin: 15px' aria-hidden='true'></span></td>"
+            data[i]['Edit'] = "<a href='/Books/Delete/" + data[i]['BookId'] + "'><span class='glyphicon glyphicon-trash' style='font-size: 24px; margin: 15px' aria-hidden='true'></span></a><a href='/Books/Edit/" + data[i]['BookId'] + "'><span class='glyphicon glyphicon-pencil' style='font-size: 24px; margin: 15px' aria-hidden='true'></span>"
         }
         $.ajax({
             type: "post",
@@ -35,14 +35,14 @@ function LoadData() {
             var select = '<select name="Author" class="form-control">'
             for (var i = 0; i < _count; i++) {
                 for (var j = 0; j < count; j++) {
-                    if (data[j]['AuthorId'] == i) data[j]['Author'] = d[i]['Name'];
+                    if (data[j]['AuthorId'] == i + 1) data[j]['Author'] = d[i]['Name'];
                 }
                 select += "<option value=" + i + ">" + d[i]["Name"] +"</option>"
             }
             select += '</select>'
 
             data[count] = { 'Cover': '<input type="file" value="Upload cover" accept=".jpg, .jpeg, .png, .gif" name="Cover" id="Cover">', 'Name': "<input type='text' class='form-control' placeholder='Book title' name='Name'>", 'PublishDate': "<input type='text' class='form-control' placeholder='Book publish date' name='Date'>", 'Author': select }
-            data[count]['Edit'] = "<td><button class='btn' type='submit'>Upload book</button></td>"
+            data[count]['Edit'] = "<button class='btn' type='submit'>Upload book</button>"
             LoadTable(data);
         })
     })
@@ -81,14 +81,14 @@ function ReloadData(title, author) {
             var select = '<select name="Author" class="form-control">'
             for (var i = 0; i < _count; i++) {
                 for (var j = 0; j < count; j++) {
-                    if (data[j]['AuthorId'] == i) data[j]['Author'] = d[i]['Name'];
+                    if (data[j]['AuthorId'] == i + 1) data[j]['Author'] = d[i]['Name'];
                 }
-                select += "<option value=" + i + ">" + d[i]["Name"] +"</option>"
+                select += "<option value=" + i + ">" + d[i]["Name"] + "</option>"
             }
             select += '</select>'
 
             data[count] = { 'Cover': '<input type="file" value="Upload cover" accept=".jpg, .jpeg, .png, .gif" name="Cover" id="Cover">', 'Name': "<input type='text' class='form-control' placeholder='Book title' name='Name'>", 'PublishDate': "<input type='text' class='form-control' placeholder='Book publish date' name='Date'>", 'Author': select }
-            data[count]['Edit'] = "<td><button class='btn' type='submit'>Upload book</button></td>"
+            data[count]['Edit'] = "<button class='btn' type='submit'>Upload book</button>"
             ReloadTable(data);
         })
 

@@ -1,8 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
+
 namespace Model.Models.Mapping
 {
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.ModelConfiguration;
-
     public class BookMap : EntityTypeConfiguration<Book>
     {
         public BookMap()
@@ -11,9 +11,6 @@ namespace Model.Models.Mapping
             this.HasKey(t => t.BookId);
 
             // Properties
-            this.Property(t => t.BookId)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
             this.Property(t => t.Name)
                 .IsRequired()
                 .HasMaxLength(50);

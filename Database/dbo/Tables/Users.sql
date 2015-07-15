@@ -1,7 +1,10 @@
-﻿CREATE TABLE [dbo].[Users] (
-    [Id]       INT          NOT NULL,
-    [Username] VARCHAR (50) NOT NULL,
-    [Password] VARCHAR (50) NOT NULL,
-    [Age]      INT          NOT NULL
-);
-
+﻿CREATE TABLE [dbo].[Users](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Username] [varchar](50) NOT NULL,
+	[Password] [varchar](50) NOT NULL,
+	[Age] [int] NOT NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]

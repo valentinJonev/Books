@@ -148,7 +148,7 @@ namespace BooksUI.Controllers
         {
             public readonly string id = "id";
             public readonly string Cover = "Cover";
-            public readonly string Name = "Name";
+            public readonly string Id = "Id";
             public readonly string PublishDate = "PublishDate";
             public readonly string AuthorId = "AuthorId";
         }
@@ -226,17 +226,17 @@ namespace BooksUI.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase Cover, string Name, string PublishDate, string AuthorId);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase Cover, string Id, string PublishDate, string AuthorId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(System.Web.HttpPostedFileBase Cover, string Name, string PublishDate, string AuthorId)
+        public override System.Web.Mvc.ActionResult Edit(System.Web.HttpPostedFileBase Cover, string Id, string PublishDate, string AuthorId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Cover", Cover);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Name", Name);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "PublishDate", PublishDate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "AuthorId", AuthorId);
-            EditOverride(callInfo, Cover, Name, PublishDate, AuthorId);
+            EditOverride(callInfo, Cover, Id, PublishDate, AuthorId);
             return callInfo;
         }
 

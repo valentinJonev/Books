@@ -1,9 +1,9 @@
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using Model.Models.Mapping;
+
 namespace Model.Models
 {
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    using Model.Models.Mapping;
-
     public partial class BooksContext : DbContext
     {
         static BooksContext()
@@ -17,9 +17,7 @@ namespace Model.Models
         }
 
         public DbSet<Author> Authors { get; set; }
-
         public DbSet<Book> Books { get; set; }
-
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

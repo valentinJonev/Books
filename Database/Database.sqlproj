@@ -61,13 +61,17 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="PostDeploymentScripts" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\Users_1.sql" />
-    <Build Include="dbo\Tables\Books_1.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\Books.sql" />
     <Build Include="dbo\Tables\Authors.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeploymentScripts\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

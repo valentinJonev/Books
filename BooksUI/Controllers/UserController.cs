@@ -31,7 +31,7 @@
         public virtual ActionResult Login(string Username, string Password)
         {
             var user = this.unitOfWork.UserRepository.Get(u => u.Username == Username && u.Password == Password);
-            if (user.Count() > 0)
+            if (user.Any())
             {
                 this.Session["User"] = user.First();
                 return this.RedirectToAction(MVC.Home.Index());
@@ -57,13 +57,12 @@
         {
             if (Password == RepeatPassword)
             {
-                if (this.unitOfWork.UserRepository.Get(u => u.Username == Username).Count() == 0)
+                if (!this.unitOfWork.UserRepository.Get(u => u.Username == Username).Any())
                 {
-                    Random random = new Random();
-                    User user = new User { Id = random.Next(0, 25565), Username = Username, Password = Password, Age = Age };
+                    User user = new User { Username = Username, Password = Password, Age = Age };
                     this.unitOfWork.UserRepository.Insert(user);
                     this.unitOfWork.Save();
-                    return this.View(MVC.User.Login());
+                    return this.RedirectToAction(MVC.Home.Index());
                 }
 
                 ModelState.AddModelError("error", "User already registered!");

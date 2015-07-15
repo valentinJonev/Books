@@ -1,0 +1,17 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Books]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Rename
+       [dbo].[BookId] (Primary Key)
+     Table rebuild
+       [dbo].[Books] (Table)
+
+** Supporting actions

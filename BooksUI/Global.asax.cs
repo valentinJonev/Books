@@ -1,4 +1,6 @@
-﻿namespace BooksUI
+﻿[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+
+namespace BooksUI
 {
     using System;
     using System.Collections.Generic;
@@ -11,6 +13,8 @@
     using BooksUI.App_Start;
     using OneTrueError.Reporting;
     using OneTrueError.AspNet.Mvc5;
+    using Model.Models;
+    using BooksUI.Binders;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -23,6 +27,7 @@
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(SearchViewModel), new CustomBinder());
         }
     }
 }

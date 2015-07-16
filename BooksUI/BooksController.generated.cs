@@ -118,8 +118,7 @@ namespace BooksUI.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Index
         {
-            public readonly string Title = "Title";
-            public readonly string Author = "Author";
+            public readonly string search = "search";
         }
         static readonly ActionParamsClass_UploadBook s_params_UploadBook = new ActionParamsClass_UploadBook();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -174,15 +173,14 @@ namespace BooksUI.Controllers
         public T4MVC_BooksController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Title, string Author);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Model.Models.SearchViewModel search);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index(string Title, string Author)
+        public override System.Web.Mvc.ActionResult Index(Model.Models.SearchViewModel search)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Title", Title);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Author", Author);
-            IndexOverride(callInfo, Title, Author);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "search", search);
+            IndexOverride(callInfo, search);
             return callInfo;
         }
 

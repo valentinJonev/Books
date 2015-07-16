@@ -2,7 +2,7 @@
 	[BookId] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [varchar](50) NOT NULL,
 	[Cover] [varchar](max) NULL,
-	[PublishDate] [date] NOT NULL,
+	[PublishDate] [int] NOT NULL,
 	[AuthorId] [int] NOT NULL,
  CONSTRAINT [PK_Books] PRIMARY KEY CLUSTERED 
 (

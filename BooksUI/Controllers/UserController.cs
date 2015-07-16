@@ -10,6 +10,8 @@
     public partial class UserController : Controller
     {
         private IUnitOfWork unitOfWork;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+   (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public UserController(IUnitOfWork unitOfWork)
         {
@@ -30,14 +32,23 @@
         [HttpPost]
         public virtual ActionResult Login(string Username, string Password)
         {
-            var user = this.unitOfWork.UserRepository.Get(u => u.Username == Username && u.Password == Password);
-            if (user.Any())
+            try
             {
-                this.Session["User"] = user.First();
-                return this.RedirectToAction(MVC.Home.Index());
-            }
+                var user = this.unitOfWork.UserRepository.Get(u => u.Username == Username && u.Password == Password);
+                if (user.Any())
+                {
+                    this.Session["User"] = user.First();
+                    return this.RedirectToAction(MVC.Home.Index());
+                }
 
-            ModelState.AddModelError("error", "Invalid username or password!");
+                ModelState.AddModelError("error", "Invalid username or password!");
+            }
+            catch (Exception ex)
+            {
+                log.Error("An error occured in User/Login  : ", ex);
+                throw;
+            }
+            
             return this.View();
         }
 
@@ -55,33 +66,49 @@
         [HttpPost]
         public virtual ActionResult Register(string Username, string Password, string RepeatPassword, int Age)
         {
-            if (Password == RepeatPassword)
+            try
             {
-                if (!this.unitOfWork.UserRepository.Get(u => u.Username == Username).Any())
+                if (Password == RepeatPassword)
                 {
-                    User user = new User { Username = Username, Password = Password, Age = Age };
-                    this.unitOfWork.UserRepository.Insert(user);
-                    this.unitOfWork.Save();
-                    return this.RedirectToAction(MVC.Home.Index());
+                    if (!this.unitOfWork.UserRepository.Get(u => u.Username == Username).Any())
+                    {
+                        User user = new User { Username = Username, Password = Password, Age = Age };
+                        this.unitOfWork.UserRepository.Insert(user);
+                        this.unitOfWork.Save();
+                        return this.RedirectToAction(MVC.Home.Index());
+                    }
+
+                    ModelState.AddModelError("error", "User already registered!");
+                    return this.View();
                 }
 
-                ModelState.AddModelError("error", "User already registered!");
+                ModelState.AddModelError("error", "Passwords do not mach!");
                 return this.View();
             }
-
-            ModelState.AddModelError("error", "Passwords do not mach!");
-            return this.View();
+            catch (Exception ex)
+            {
+                log.Error("An error occured in User/Register  : ", ex);
+                throw;
+            }
         }
 
         public virtual ActionResult Logout()
         {
-            if (this.Session["User"] != null)
+            try
             {
-                Session.Abandon();
-                this.unitOfWork.Dispose();
-            }
+                if (this.Session["User"] != null)
+                {
+                    Session.Abandon();
+                    this.unitOfWork.Dispose();
+                }
 
-            return this.RedirectToAction(MVC.User.Login());
+                return this.RedirectToAction(MVC.User.Login());
+            }
+            catch (Exception ex)
+            {
+                log.Error("An error occured in User/Logout  : ", ex);
+                throw;
+            }
         }
     }
 }

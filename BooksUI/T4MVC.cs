@@ -77,11 +77,13 @@ namespace Links
         public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
         public static readonly string dataTables_bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/dataTables.bootstrap.min.js") ? Url("dataTables.bootstrap.min.js") : Url("dataTables.bootstrap.js");
         public static readonly string dataTables_responsive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/dataTables.responsive.min.js") ? Url("dataTables.responsive.min.js") : Url("dataTables.responsive.js");
+        public static readonly string fileinput_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/fileinput.min.js") ? Url("fileinput.min.js") : Url("fileinput.js");
+        public static readonly string fileinput_min_js = Url("fileinput.min.js");
         public static readonly string jquery_2_1_4_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.4.intellisense.min.js") ? Url("jquery-2.1.4.intellisense.min.js") : Url("jquery-2.1.4.intellisense.js");
         public static readonly string jquery_2_1_4_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.4.min.js") ? Url("jquery-2.1.4.min.js") : Url("jquery-2.1.4.js");
         public static readonly string jquery_2_1_4_min_js = Url("jquery-2.1.4.min.js");
         public static readonly string jquery_2_1_4_min_map = Url("jquery-2.1.4.min.map");
-        public static readonly string jquery_dataTables_min_js = Url("jquery.dataTables.min.js");
+        public static readonly string jquery_dataTables_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.dataTables.min.js") ? Url("jquery.dataTables.min.js") : Url("jquery.dataTables.js");
         public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
         public static readonly string jquery_validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.min.js") ? Url("jquery.validate.min.js") : Url("jquery.validate.js");
         public static readonly string jquery_validate_min_js = Url("jquery.validate.min.js");
@@ -108,7 +110,11 @@ namespace Links
              
         public static readonly string dataTables_responsive_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/dataTables.responsive.min.css") ? Url("dataTables.responsive.min.css") : Url("dataTables.responsive.css");
              
-        public static readonly string jquery_dataTables_min_css = Url("jquery.dataTables.min.css");
+        public static readonly string fileinput_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/fileinput.min.css") ? Url("fileinput.min.css") : Url("fileinput.css");
+             
+        public static readonly string fileinput_min_css = Url("fileinput.min.css");
+        public static readonly string jquery_dataTables_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.dataTables.min.css") ? Url("jquery.dataTables.min.css") : Url("jquery.dataTables.css");
+             
     }
 
     
@@ -123,10 +129,12 @@ namespace Links
                 public const string bootstrap_min_js = "~/Scripts/bootstrap.min.js"; 
                 public const string dataTables_bootstrap_js = "~/Scripts/dataTables.bootstrap.js"; 
                 public const string dataTables_responsive_js = "~/Scripts/dataTables.responsive.js"; 
+                public const string fileinput_js = "~/Scripts/fileinput.js"; 
+                public const string fileinput_min_js = "~/Scripts/fileinput.min.js"; 
                 public const string jquery_2_1_4_intellisense_js = "~/Scripts/jquery-2.1.4.intellisense.js"; 
                 public const string jquery_2_1_4_js = "~/Scripts/jquery-2.1.4.js"; 
                 public const string jquery_2_1_4_min_js = "~/Scripts/jquery-2.1.4.min.js"; 
-                public const string jquery_dataTables_min_js = "~/Scripts/jquery.dataTables.min.js"; 
+                public const string jquery_dataTables_js = "~/Scripts/jquery.dataTables.js"; 
                 public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
                 public const string jquery_validate_min_js = "~/Scripts/jquery.validate.min.js"; 
                 public const string jquery_validate_unobtrusive_js = "~/Scripts/jquery.validate.unobtrusive.js"; 
@@ -145,7 +153,9 @@ namespace Links
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
                 public const string dataTables_bootstrap_css = "~/Content/dataTables.bootstrap.css";
                 public const string dataTables_responsive_css = "~/Content/dataTables.responsive.css";
-                public const string jquery_dataTables_min_css = "~/Content/jquery.dataTables.min.css";
+                public const string fileinput_css = "~/Content/fileinput.css";
+                public const string fileinput_min_css = "~/Content/fileinput.min.css";
+                public const string jquery_dataTables_css = "~/Content/jquery.dataTables.css";
             }
         }
     }

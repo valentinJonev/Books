@@ -15,6 +15,8 @@
         private IGenericRepository<Book> bookRepository;
         private IGenericRepository<Author> authorRepository;
         private bool disposed = false;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+    (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public IGenericRepository<Book> BookRepository
         {
@@ -63,21 +65,7 @@
             }
             catch (DbEntityValidationException e)
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    System.Diagnostics.Debug.WriteLine(
-                        "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name,
-                        eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        System.Diagnostics.Debug.WriteLine(
-                            "- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName,
-                            ve.ErrorMessage);
-                    }
-                }
-
+                log.Error("An error occured in UnitOfWork (Save) : ", e);
                 throw;
             }
         }
@@ -90,15 +78,24 @@
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            try
             {
-                if (disposing)
+                if (!this.disposed)
                 {
-                    this.context.Dispose();
+                    if (disposing)
+                    {
+                        this.context.Dispose();
+                    }
                 }
-            }
 
-            this.disposed = true;
+                this.disposed = true;
+            }
+            catch (Exception e)
+            {
+                log.Error("An error occured in UnitOfWork (Dispose) : ", e);
+                throw;
+            }
+            
         }
     }
 }

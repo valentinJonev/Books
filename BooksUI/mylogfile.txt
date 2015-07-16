@@ -1,0 +1,9 @@
+2015-07-16 13:47:51,030 [5] ERROR BooksUI.Controllers.BooksController - An error occured in Books/UploadBook : 
+System.Web.HttpException (0x80004005): Out of range argument error
+   at BooksUI.Controllers.BooksController.UploadBook(HttpPostedFileBase Cover, String Name, String Date, String Author) in c:\Users\valentin.yonev\Documents\Visual Studio 2013\Projects\Books\BooksUI\Controllers\BooksController.cs:line 121
+2015-07-16 14:06:31,375 [15] ERROR BooksUI.Controllers.BooksController - An error occured in Books/UploadBook : 
+System.Web.HttpException (0x80004005): File extension error
+   at BooksUI.Controllers.BooksController.UploadBook(HttpPostedFileBase Cover, String Name, String Date, String Author) in c:\Users\valentin.yonev\Documents\Visual Studio 2013\Projects\Books\BooksUI\Controllers\BooksController.cs:line 105
+2015-07-16 14:41:42,580 [7] ERROR BooksUI.Controllers.BooksController - An error occured in Books/UploadBook : 
+System.Web.HttpException (0x80004005): File extension error
+   at BooksUI.Controllers.BooksController.UploadBook(HttpPostedFileBase Cover, String Name, String Date, String Author) in c:\Users\valentin.yonev\Documents\Visual Studio 2013\Projects\Books\BooksUI\Controllers\BooksController.cs:line 103

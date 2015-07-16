@@ -1,0 +1,10 @@
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\Release\Model.dll.config
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\Release\Model.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\Release\Model.pdb
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\Release\EntityFramework.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\Release\EntityFramework.xml
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\obj\Release\Model.csprojResolveAssemblyReference.cache
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\obj\Release\Model.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Model\obj\Release\Model.pdb

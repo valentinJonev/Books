@@ -10,24 +10,34 @@
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/bundles/css")
-                .Include("~/Content/bootstrap-theme.min.css")
-                .Include("~/Content/bootstrap.min.css")
+            bundles.Add(new StyleBundle("~/bundles/bootstrapCSS")
+                .Include("~/Content/bootstrap-theme.css")
+                .Include("~/Content/bootstrap.css")
                 .Include("~/Content/bootstrap-theme.css.map")
                 .Include("~/Content/bootstrap.css.map")
-                .Include("~/Content/jquery.dataTables.min.css")
+                .Include("~/Content/fileinput.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/dataTablesCSS")
+                .Include("~/Content/jquery.dataTables.css")
                 .Include("~/Content/dataTables.bootstrap.css")
                 .Include("~/Content/dataTables.responsive.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/js")
-                .Include("~/Scripts/jquery-2.1.4.min.js")
-                .Include("~/Scripts/bootstrap.min.js")
-                .Include("~/Scripts/jquery.validate.min.js")
-                .Include("~/Scripts/jquery.validate.unobtrusive.min.js")
-                .Include("~/Scripts/jquery-2.1.4.min.map")
-                .Include("~/Scripts/jquery.dataTables.min.js")
+            bundles.Add(new ScriptBundle("~/bundles/jquery")
+                .Include("~/Scripts/jquery-{version}.js")
+                .Include("~/Scripts/jquery.validate.js")
+                .Include("~/Scripts/jquery.validate.unobtrusive.js")
+                .Include("~/Scripts/jquery-{version}.min.map"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrapJS")
+                .Include("~/Scripts/fileinput.js")
+                .Include("~/Scripts/bootstrap.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/dataTablesJS")
+                .Include("~/Scripts/jquery.dataTables.js")
+                .Include("~/Scripts/dataTables.responsive.js")
                 .Include("~/Scripts/dataTables.bootstrap.js")
-                .Include("~/Scripts/dataTables.responsive.js"));
+                .Include("~/Scripts/tableDisplay.js"));
+
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿@model SearchViewModel
-@{
+﻿@{
     var user = Session["User"] as User;
+    var search = ViewBag.Search;
 }
 
 <nav class="navbar navbar-default">
@@ -23,10 +23,10 @@
                     {
                         <form class="navbar-form clearfix" style="display:inline-block">
                             <div class="form-group">
-                                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Search by title" })
-                            </div>
+                                <input type="text" class="form-control" placeholder="Search by title" name="Title" id="Title" />
+                             </div>
                             <div class="form-group">
-                                @Html.TextBoxFor(m => m.Author, new { @class = "form-control", placeholder = "Search by author" })
+                                <input type="text" class="form-control" placeholder="Search by author" name="Author" id="Author" />
                             </div>
                             <button type="button" onclick="search('submit')" class="btn btn-default">Search</button>
                             <button type="reset" onclick="search('clear')" class="btn btn-default">Clear</button>

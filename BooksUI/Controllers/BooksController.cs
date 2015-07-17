@@ -36,7 +36,7 @@
                     {
                         var authors = this.unitOfWork.AuthorRepository.Get(a => a.Name.Contains(search.Author));
                         List<Book> booksList = new List<Book>();
-                        foreach (var author in authors)
+                        foreach (Author author in authors)
                         {
                             var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name.Contains(search.Title));
                             foreach (var book in books)
@@ -68,7 +68,7 @@
                 {
                     var authors = this.unitOfWork.AuthorRepository.Get(a => a.Name.Contains(search.Author));
                     List<Book> booksList = new List<Book>();
-                    foreach (var author in authors)
+                    foreach (Author author in authors)
                     {
                         var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id);
                         foreach (var book in books)

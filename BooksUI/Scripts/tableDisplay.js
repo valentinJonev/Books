@@ -13,7 +13,7 @@ function LoadData() {
             var date = parseInt(data[i]['PublishDate']);
             data[i]['PublishDate'] = date
             var cover = data[i]['Cover'];
-            data[i]['Cover'] = '<div class="col-md-6"><a href="#" class="thumbnail">'
+            data[i]['Cover'] = '<div class="col-md-8"><a href="#" class="thumbnail">'
             if (cover != null) {
                 data[i]["Cover"] += '<img src="' + cover + '">'
 
@@ -74,7 +74,7 @@ function ReloadData(title, author) {
 
             }
             data[i]["Cover"] += '</a></div>'
-            data[i]['Edit'] = "<a href='/Books/Delete/" + data[i]['Name'] + "'><span class='glyphicon glyphicon-trash' style='font-size: 24px; margin: 15px' aria-hidden='true'></span></a><a href='/Books/Edit/" + data[i]['Name'] + "'><span class='glyphicon glyphicon-pencil' style='font-size: 24px; margin: 15px' aria-hidden='true'></span>"
+            data[i]['Edit'] = "<a href='/Books/Delete/" + data[i]['BookId'] + "'><span class='glyphicon glyphicon-trash' style='font-size: 24px; margin: 15px' aria-hidden='true'></span></a><a href='/Books/Edit/" + data[i]['BookId'] + "'><span class='glyphicon glyphicon-pencil' style='font-size: 24px; margin: 15px' aria-hidden='true'></span>"
 
         }
         $.ajax({

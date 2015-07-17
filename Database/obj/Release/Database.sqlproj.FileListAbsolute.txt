@@ -3,7 +3,3 @@ C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\bin
 C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\bin\Release\Database.pdb
 C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\obj\Release\Database.dll
 C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\obj\Release\Database.pdb
-C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\obj\Release\Model.xml
-C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\obj\Release\refactor.xml
-C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\obj\Release\postdeploy.sql
-C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\Database\obj\Release\predeploy.sql

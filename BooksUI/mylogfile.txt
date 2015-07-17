@@ -7,3 +7,8 @@ System.Web.HttpException (0x80004005): File extension error
 2015-07-16 14:41:42,580 [7] ERROR BooksUI.Controllers.BooksController - An error occured in Books/UploadBook : 
 System.Web.HttpException (0x80004005): File extension error
    at BooksUI.Controllers.BooksController.UploadBook(HttpPostedFileBase Cover, String Name, String Date, String Author) in c:\Users\valentin.yonev\Documents\Visual Studio 2013\Projects\Books\BooksUI\Controllers\BooksController.cs:line 103
+2015-07-17 09:19:35,938 [25] ERROR BooksUI.Controllers.BooksController - An error occured in Books/Delete : 
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at BooksUI.Controllers.BooksController.Delete(String id) in c:\Users\valentin.yonev\Documents\Visual Studio 2013\Projects\Books\BooksUI\Controllers\BooksController.cs:line 139

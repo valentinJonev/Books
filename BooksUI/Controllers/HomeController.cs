@@ -1,5 +1,6 @@
 ﻿namespace BooksUI.Controllers
 {
+    using Model.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -12,6 +13,7 @@
         {
             if (this.Session["User"] != null)
             {
+                ViewBag.Search = new SearchViewModel();
                 return this.View();
             }
 

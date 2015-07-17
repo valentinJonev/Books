@@ -19,24 +19,25 @@
             {
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <p class="navbar-text">Welcome @user.Username</p>
-                    @if (ViewBag.Title == "Books")
+                    @if (ViewBag.Title == "Index")
                     {
-                        <form class="navbar-form clearfix" style="display:inline-block">
+                        using(Html.BeginForm(MVC.Books.Index(), FormMethod.Post, new { @class="navbar-form clearfix", id="search", style="display:inline-block"}))
+                        {
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Search by title" name="Title" id="Title" />
                              </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Search by author" name="Author" id="Author" />
                             </div>
-                            <button type="button" onclick="search('submit')" class="btn btn-default">Search</button>
-                            <button type="reset" onclick="search('clear')" class="btn btn-default">Clear</button>
-                        </form>
+                            <button type="submit"  class="btn btn-default">Search</button>
+                            <button type="reset" onclick="document.getElementById('search').submit()" class="btn btn-default">Clear</button>
+                    }
                     }
                     @using (Html.BeginForm(MVC.User.Logout(), FormMethod.Post, new { @class = "navbar-form navbar-right" }))
                     {
                         <button class="btn btn-default" type="submit"> Logout </button>
                     }
-</div>
+                </div>
             }
            
     </div>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BookViewModel>
+@using (Html.BeginForm(MVC.Books.UploadBook(), FormMethod.Post, new { @class = "form-horizontal", id = "publish", enctype = "multipart/form-data" }))
+{
+    <table id="table" style="text-align:center" class="display compact" border="1">
+        <thead>
+            <tr>
+                <th>Cover</th>
+                <th>Title</th>
+                <th>Publish year</th>
+                <th>Author</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td>
+                    <input type="file" class="file" data-preview-file-type="text" value="Upload cover" accept=".jpg, .jpeg, .png, .gif" name="Cover" id="Cover">
+                </td>
+                <td>
+                    <input type='text' class='form-control' placeholder='Book title' name='Name'>
+                </td>
+                <td>
+                    <input type='text' class='form-control' placeholder='Book publish date' name='Date'>
+                </td>
+                <td>
+                    @Html.DropDownList("Authors", new SelectList(ViewBag.Authors, "Value", "Text"), new { @class = "form-control" })
+                </td>
+                <td>
+                    <input class='btn btn-default' type='submit' value="Upload">
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (BookViewModel book in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="col-md-8">
+                            <a href="#" class="thumbnail">
+                                <img src="@book.Cover" />
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        @book.Name
+                    </td>
+                    <td>
+                        @book.PublishDate
+                    </td>
+                    <td>
+                        @book.Author
+                    </td>
+                    <td>
+                        <a href='/Books/Delete/@book.BookId'>
+                            <span class='glyphicon glyphicon-trash' style='font-size: 24px; margin: 15px' aria-hidden='true'></span>
+                        </a>
+                        <a href='/Books/Edit/@book.BookId'>
+                            <span class='glyphicon glyphicon-pencil' style='font-size: 24px; margin: 15px' aria-hidden='true'></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -14,7 +14,7 @@
             if (this.Session["User"] != null)
             {
                 ViewBag.Search = new SearchViewModel();
-                return this.View();
+                return this.RedirectToAction(MVC.Books.Index());
             }
 
             return this.RedirectToAction(MVC.User.Login());

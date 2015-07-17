@@ -24,7 +24,111 @@
         {
             this.unitOfWork = unitOfWork;
         }
+
+        public virtual ActionResult Index([ModelBinder(typeof(CustomBinder))] SearchViewModel search)
+        {
+            if (Session["User"] == null)
+            {
+                return this.RedirectToAction(MVC.User.Login());
+            }
+            List<SelectListItem> authorsView = new List<SelectListItem>();
+            var authors = this.unitOfWork.AuthorRepository.Get();
+            foreach (Author author in authors)
+            {
+                authorsView.Add(new SelectListItem { Text = author.Name, Value = author.Id.ToString() });
+            }
+            ViewBag.Authors = authorsView;
+            if (!string.IsNullOrEmpty(search.Title))
+            {
+                if (!string.IsNullOrEmpty(search.Author))
+                {
+                    try
+                    {
+                        var authorsList = this.unitOfWork.AuthorRepository.Get(a => a.Name == search.Author);
+                        List<BookViewModel> booksView = new List<BookViewModel>();
+                        foreach (Author author in authorsList)
+                        {
+                            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name == search.Title);
+                            foreach (var book in books)
+                            {
+                                booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
+                            }
+                        }
+
+                        return this.View(booksView);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error("An error occured in Books/Index (Search by title and author) : ", ex);
+                        throw;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var authorsList = this.unitOfWork.AuthorRepository.Get();
+                        List<BookViewModel> booksView = new List<BookViewModel>();
+                        foreach (Author author in authorsList)
+                        {
+                            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name == search.Title);
+                            foreach (var book in books)
+                            {
+                                booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
+                            }
+                        }
+
+                        return this.View(booksView);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error("An error occured in Books/Index (Search by title) : ", ex);
+                        throw;
+                    }
+                }
+            }
+            else if (!string.IsNullOrEmpty(search.Author))
+            {
+                try
+                {
+                    var authorsList = this.unitOfWork.AuthorRepository.Get(a => a.Name == search.Author);
+                    List<BookViewModel> booksView = new List<BookViewModel>();
+                    foreach (Author author in authorsList)
+                    {
+                        var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id);
+                        foreach (var book in books)
+                        {
+                            booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
+                        }
+                    }
+
+                    return this.View(booksView);
+                }
+                catch (Exception ex)
+                {
+                    log.Error("An error occured in Books/Index (Search and author) : ", ex);
+                    throw;
+                }
+            }
+            else
+            {
+                var authorsList = this.unitOfWork.AuthorRepository.Get();
+                List<BookViewModel> booksView = new List<BookViewModel>();
+                foreach (Author author in authorsList)
+	            {
+		            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id);
+                    foreach (var book in books)
+                    {
+                        booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
+                    }
+	            }
+                
+                return this.View(booksView);
+            }
+            
+        }
         
+        /*
         [HttpPost]
         public virtual ActionResult Index([ModelBinder(typeof(CustomBinder))] SearchViewModel search)
         {
@@ -46,7 +150,7 @@
                         }
 
                         booksList.OrderBy(b => b.Name);
-                        return this.Json(booksList);
+                        return this.View("Index",booksList);
                     }
                     catch (Exception ex)
                     {
@@ -57,7 +161,7 @@
                 }
                 else
                 {
-                    return this.Json(this.unitOfWork.BookRepository.Get(b => b.Name.Contains(search.Title)).OrderBy(b => b.Name));
+                    return this.View("Index",this.unitOfWork.BookRepository.Get(b => b.Name.Contains(search.Title)).OrderBy(b => b.Name));
                 }
                 
             }
@@ -78,7 +182,7 @@
                     }
 
                     booksList.OrderBy(b => b.Name);
-                    return this.Json(booksList);
+                    return this.View(booksList);
                 }
                 catch (Exception ex)
                 {
@@ -89,22 +193,24 @@
             }
             else
             {
-                return this.Json(this.unitOfWork.BookRepository.Get().OrderBy(b => b.Name));
+                return this.View(this.unitOfWork.BookRepository.Get().OrderBy(b => b.Name));
             }
         }
+         * */
 
         [HttpPost]
-        public virtual ActionResult UploadBook(HttpPostedFileBase Cover, string Name, string Date, string Author)
+        public virtual ActionResult UploadBook(HttpPostedFileBase Cover, string Name, string Date, string Authors)
         {
             try
             {
-                if (Path.GetExtension(Cover.FileName) != ".jpg" && Path.GetExtension(Cover.FileName) != ".jpeg" && Path.GetExtension(Cover.FileName) != ".png" && Path.GetExtension(Cover.FileName) != ".gif")
-                {
-                    throw new HttpException(500, "File extension error");
-                }
-                string path = null;
+
+                string path = "http://i.imgur.com/sJ3CT4V.gif";
                 if (Cover != null && Cover.ContentLength > 0)
                 {
+                    if (Path.GetExtension(Cover.FileName) != ".jpg" && Path.GetExtension(Cover.FileName) != ".jpeg" && Path.GetExtension(Cover.FileName) != ".png" && Path.GetExtension(Cover.FileName) != ".gif")
+                    {
+                        throw new HttpException(500, "File extension error");
+                    }
                     var fileName = Path.GetFileName(Cover.FileName);
                     var savePath = Path.Combine(Server.MapPath("~/Images/"), fileName);
                     Cover.SaveAs(savePath);
@@ -114,7 +220,7 @@
                 int date = 0;
                 if (int.TryParse(Date, out date) && date >= 0 && date < DateTime.MaxValue.Year && Name != string.Empty)
                 {
-                    Book book = new Book { Cover = path, Name = Name, AuthorId = int.Parse(Author) + 1, PublishDate = date };
+                    Book book = new Book { Cover = path, Name = Name, AuthorId = int.Parse(Authors), PublishDate = date };
                     this.unitOfWork.BookRepository.Insert(book);
                     this.unitOfWork.Save();
                 }

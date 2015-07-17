@@ -129,7 +129,7 @@ namespace BooksUI.Controllers
             public readonly string Cover = "Cover";
             public readonly string Name = "Name";
             public readonly string Date = "Date";
-            public readonly string Author = "Author";
+            public readonly string Authors = "Authors";
         }
         static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -162,8 +162,10 @@ namespace BooksUI.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Edit = "Edit";
+                public readonly string Index = "Index";
             }
             public readonly string Edit = "~/Views/Books/Edit.cshtml";
+            public readonly string Index = "~/Views/Books/Index.cshtml";
         }
     }
 
@@ -185,17 +187,17 @@ namespace BooksUI.Controllers
         }
 
         [NonAction]
-        partial void UploadBookOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase Cover, string Name, string Date, string Author);
+        partial void UploadBookOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase Cover, string Name, string Date, string Authors);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult UploadBook(System.Web.HttpPostedFileBase Cover, string Name, string Date, string Author)
+        public override System.Web.Mvc.ActionResult UploadBook(System.Web.HttpPostedFileBase Cover, string Name, string Date, string Authors)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadBook);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Cover", Cover);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Name", Name);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Date", Date);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Author", Author);
-            UploadBookOverride(callInfo, Cover, Name, Date, Author);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Authors", Authors);
+            UploadBookOverride(callInfo, Cover, Name, Date, Authors);
             return callInfo;
         }
 

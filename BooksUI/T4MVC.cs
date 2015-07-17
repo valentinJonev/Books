@@ -79,10 +79,12 @@ namespace Links
         public static readonly string dataTables_responsive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/dataTables.responsive.min.js") ? Url("dataTables.responsive.min.js") : Url("dataTables.responsive.js");
         public static readonly string fileinput_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/fileinput.min.js") ? Url("fileinput.min.js") : Url("fileinput.js");
         public static readonly string fileinput_min_js = Url("fileinput.min.js");
+        public static readonly string html5shiv_min_js = Url("html5shiv.min.js");
         public static readonly string jquery_2_1_4_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.4.intellisense.min.js") ? Url("jquery-2.1.4.intellisense.min.js") : Url("jquery-2.1.4.intellisense.js");
         public static readonly string jquery_2_1_4_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.4.min.js") ? Url("jquery-2.1.4.min.js") : Url("jquery-2.1.4.js");
         public static readonly string jquery_2_1_4_min_js = Url("jquery-2.1.4.min.js");
         public static readonly string jquery_2_1_4_min_map = Url("jquery-2.1.4.min.map");
+        public static readonly string jquery_compat_3_0_0_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-compat-3.0.0.min.js") ? Url("jquery-compat-3.0.0.min.js") : Url("jquery-compat-3.0.0.js");
         public static readonly string jquery_dataTables_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.dataTables.min.js") ? Url("jquery.dataTables.min.js") : Url("jquery.dataTables.js");
         public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
         public static readonly string jquery_validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.min.js") ? Url("jquery.validate.min.js") : Url("jquery.validate.js");
@@ -90,6 +92,7 @@ namespace Links
         public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
         public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
         public static readonly string npm_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/npm.min.js") ? Url("npm.min.js") : Url("npm.js");
+        public static readonly string respond_min_js = Url("respond.min.js");
         public static readonly string tableDisplay_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/tableDisplay.min.js") ? Url("tableDisplay.min.js") : Url("tableDisplay.js");
     }
 
@@ -131,15 +134,18 @@ namespace Links
                 public const string dataTables_responsive_js = "~/Scripts/dataTables.responsive.js"; 
                 public const string fileinput_js = "~/Scripts/fileinput.js"; 
                 public const string fileinput_min_js = "~/Scripts/fileinput.min.js"; 
+                public const string html5shiv_min_js = "~/Scripts/html5shiv.min.js"; 
                 public const string jquery_2_1_4_intellisense_js = "~/Scripts/jquery-2.1.4.intellisense.js"; 
                 public const string jquery_2_1_4_js = "~/Scripts/jquery-2.1.4.js"; 
                 public const string jquery_2_1_4_min_js = "~/Scripts/jquery-2.1.4.min.js"; 
+                public const string jquery_compat_3_0_0_js = "~/Scripts/jquery-compat-3.0.0.js"; 
                 public const string jquery_dataTables_js = "~/Scripts/jquery.dataTables.js"; 
                 public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
                 public const string jquery_validate_min_js = "~/Scripts/jquery.validate.min.js"; 
                 public const string jquery_validate_unobtrusive_js = "~/Scripts/jquery.validate.unobtrusive.js"; 
                 public const string jquery_validate_unobtrusive_min_js = "~/Scripts/jquery.validate.unobtrusive.min.js"; 
                 public const string npm_js = "~/Scripts/npm.js"; 
+                public const string respond_min_js = "~/Scripts/respond.min.js"; 
                 public const string tableDisplay_js = "~/Scripts/tableDisplay.js"; 
             }
         }

@@ -23,7 +23,7 @@
                 .Include("~/Content/dataTables.responsive.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery")
-                .Include("~/Scripts/jquery-{version}.js")
+                .Include("~/Scripts/jquery-compat-{version}.js")
                 .Include("~/Scripts/jquery.validate.js")
                 .Include("~/Scripts/jquery.validate.unobtrusive.js")
                 .Include("~/Scripts/jquery-{version}.min.map"));
@@ -37,6 +37,10 @@
                 .Include("~/Scripts/dataTables.responsive.js")
                 .Include("~/Scripts/dataTables.bootstrap.js")
                 .Include("~/Scripts/tableDisplay.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ie8")
+                .Include("~/Scripts/respond.min.js")
+                .Include("~/Scripts/html5shiv.min.js"));
 
         }
     }

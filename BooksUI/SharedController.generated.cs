@@ -39,8 +39,10 @@ namespace T4MVC
             public class _ViewNamesClass
             {
                 public readonly string _Navbar = "_Navbar";
+                public readonly string _Table = "_Table";
             }
             public readonly string _Navbar = "~/Views/Shared/_Navbar.cshtml";
+            public readonly string _Table = "~/Views/Shared/_Table.cshtml";
         }
     }
 

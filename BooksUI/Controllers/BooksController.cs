@@ -17,114 +17,63 @@
     {
         private UnitOfWork unitOfWork;
 
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-    (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         public BooksController(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
-        public virtual ActionResult Index([ModelBinder(typeof(CustomBinder))] SearchViewModel search)
+        public virtual ActionResult Index([ModelBinder(typeof(TrimModelBinder))] SearchViewModel search)
         {
-            if (Session["User"] == null)
+            if (this.Session["User"] == null)
             {
                 return this.RedirectToAction(MVC.User.Login());
             }
+
             List<SelectListItem> authorsView = new List<SelectListItem>();
             var authors = this.unitOfWork.AuthorRepository.Get();
             foreach (Author author in authors)
             {
                 authorsView.Add(new SelectListItem { Text = author.Name, Value = author.Id.ToString() });
             }
+            
             ViewBag.Authors = authorsView;
-            if (!string.IsNullOrEmpty(search.Title))
+
+            IEnumerable<Author> authorsList;
+            IEnumerable<Book> booksList;
+            List<BookViewModel> booksView = new List<BookViewModel>();
+            if (!string.IsNullOrEmpty(search.Author))
             {
-                if (!string.IsNullOrEmpty(search.Author))
-                {
-                    try
-                    {
-                        var authorsList = this.unitOfWork.AuthorRepository.Get(a => a.Name == search.Author);
-                        List<BookViewModel> booksView = new List<BookViewModel>();
-                        foreach (Author author in authorsList)
-                        {
-                            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name.Contains(search.Title)).OrderBy(b => b.Name);
-                            foreach (var book in books)
-                            {
-                                booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
-                            }
-                        }
-
-                        return this.View(booksView);
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Error("An error occured in Books/Index (Search by title and author) : ", ex);
-                        throw;
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        var authorsList = this.unitOfWork.AuthorRepository.Get();
-                        List<BookViewModel> booksView = new List<BookViewModel>();
-                        foreach (Author author in authorsList)
-                        {
-                            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name.Contains(search.Title)).OrderBy(b => b.Name);
-                            foreach (var book in books)
-                            {
-                                booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
-                            }
-                        }
-
-                        return this.View(booksView);
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Error("An error occured in Books/Index (Search by title) : ", ex);
-                        throw;
-                    }
-                }
-            }
-            else if (!string.IsNullOrEmpty(search.Author))
-            {
-                try
-                {
-                    var authorsList = this.unitOfWork.AuthorRepository.Get(a => a.Name == search.Author);
-                    List<BookViewModel> booksView = new List<BookViewModel>();
-                    foreach (Author author in authorsList)
-                    {
-                        var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id).OrderBy(b => b.Name);
-                        foreach (var book in books)
-                        {
-                            booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
-                        }
-                    }
-
-                    return this.View(booksView);
-                }
-                catch (Exception ex)
-                {
-                    log.Error("An error occured in Books/Index (Search and author) : ", ex);
-                    throw;
-                }
+                authorsList = this.unitOfWork.AuthorRepository.Get(a => a.Name.Contains(search.Author));
             }
             else
             {
-                var authorsList = this.unitOfWork.AuthorRepository.Get();
-                List<BookViewModel> booksView = new List<BookViewModel>();
+                authorsList = this.unitOfWork.AuthorRepository.Get();
+            }
+
+            if (!string.IsNullOrEmpty(search.Title))
+            {
                 foreach (Author author in authorsList)
-	            {
-                    var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id).OrderBy(b => b.Name);
-                    foreach (var book in books)
+                {
+                    booksList = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name.Contains(search.Title));
+                    foreach (var book in booksList)
                     {
                         booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
                     }
-	            }
-                
-                return this.View(booksView);
+                }
             }
+            else 
+            {
+                foreach (Author author in authorsList)
+                {
+                    booksList = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id);
+                    foreach (var book in booksList)
+                    {
+                        booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
+                    }
+                }
+            }
+            
+            return this.View(booksView.OrderBy(b => b.Name));
         }
 
         [HttpPost]
@@ -132,7 +81,6 @@
         {
             try
             {
-
                 string path = "http://i.imgur.com/sJ3CT4V.gif";
                 if (Cover != null && Cover.ContentLength > 0)
                 {
@@ -140,6 +88,7 @@
                     {
                         throw new HttpException(500, "File extension error");
                     }
+                    
                     var fileName = Path.GetFileName(Cover.FileName);
                     var savePath = Path.Combine(Server.MapPath("~/Images/"), fileName);
                     Cover.SaveAs(savePath);
@@ -160,7 +109,7 @@
             }
             catch (Exception ex)
             {
-                log.Error("An error occured in Books/UploadBook : ", ex);
+                Log.LogError(ex);
                 throw;
             }
 
@@ -180,7 +129,7 @@
             }
             catch (Exception ex)
             {
-                log.Error("An error occured in Books/Delete : ", ex);
+                Log.LogError(ex);
                 throw;
             }
             
@@ -202,11 +151,10 @@
 
                     return this.View();
                 }
-
             }
             catch (Exception ex)
             {
-                log.Error("An error occured in Books/Edit (HttpGet) : ", ex);
+                Log.LogError(ex);
                 throw;
             }
             
@@ -243,7 +191,7 @@
             }
             catch (Exception ex)
             {
-                log.Error("An error occured in Books/Edit (HttpPost) : ", ex);
+                Log.LogError(ex);
                 throw;
             }
             

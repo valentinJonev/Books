@@ -50,3 +50,5 @@ C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI\bin\
 C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI\bin\Microsoft.Practices.Unity.Mvc.xml
 C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
 C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI\bin\T4MVCExtensions.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI\bin\log4net.dll
+C:\Users\valentin.yonev\documents\visual studio 2013\Projects\Books\BooksUI\bin\log4net.xml

@@ -25,7 +25,7 @@ namespace BooksUI
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ModelBinders.Binders.Add(typeof(SearchViewModel), new CustomBinder());
+            ModelBinders.Binders.Add(typeof(SearchViewModel), new TrimModelBinder());
         }
     }
 }

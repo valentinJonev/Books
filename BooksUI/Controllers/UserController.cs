@@ -10,8 +10,6 @@
     public partial class UserController : Controller
     {
         private IUnitOfWork unitOfWork;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-   (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public UserController(IUnitOfWork unitOfWork)
         {
@@ -45,7 +43,7 @@
             }
             catch (Exception ex)
             {
-                log.Error("An error occured in User/Login  : ", ex);
+                Log.LogError(ex);
                 throw;
             }
             
@@ -87,7 +85,7 @@
             }
             catch (Exception ex)
             {
-                log.Error("An error occured in User/Register  : ", ex);
+                Log.LogError(ex);
                 throw;
             }
         }
@@ -106,7 +104,7 @@
             }
             catch (Exception ex)
             {
-                log.Error("An error occured in User/Logout  : ", ex);
+                Log.LogError(ex);
                 throw;
             }
         }

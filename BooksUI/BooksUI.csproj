@@ -209,6 +209,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IGenericRepository.cs" />
     <Compile Include="Controllers\IUnitOfWork.cs" />
+    <Compile Include="Controllers\Log.cs" />
     <Compile Include="Controllers\UnitOfWork.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">

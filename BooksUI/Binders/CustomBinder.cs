@@ -7,10 +7,11 @@ using System.Web.Mvc;
 
 namespace BooksUI.Binders
 {
-    public class CustomBinder : IModelBinder
+    public class TrimModelBinder : IModelBinder
     {
-        public object BindModel(ControllerContext controllerContext,
-                                ModelBindingContext bindingContext)
+        public object BindModel(
+            ControllerContext controllerContext,
+            ModelBindingContext bindingContext)
         {
             HttpRequestBase request = controllerContext.HttpContext.Request;
 

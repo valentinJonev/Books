@@ -21,7 +21,6 @@
 
         public virtual IEnumerable<TEntity> Get(
            Expression<Func<TEntity, bool>> filter = null,
-           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
            string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
@@ -35,15 +34,8 @@
             {
                 query = query.Include(includeProperty);
             }
-
-            if (orderBy != null)
-            {
-                return orderBy(query).ToList();
-            }
-            else
-            {
-                return query.ToList();
-            }
+            
+            return query.ToList();
         }
 
         public virtual TEntity GetByID(object id)

@@ -15,8 +15,6 @@
         private IGenericRepository<Book> bookRepository;
         private IGenericRepository<Author> authorRepository;
         private bool disposed = false;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-    (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public IGenericRepository<Book> BookRepository
         {
@@ -63,9 +61,9 @@
             {
                 this.context.SaveChanges();
             }
-            catch (DbEntityValidationException e)
+            catch (DbEntityValidationException ex)
             {
-                log.Error("An error occured in UnitOfWork (Save) : ", e);
+                Log.LogError(ex);
                 throw;
             }
         }
@@ -90,12 +88,11 @@
 
                 this.disposed = true;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                log.Error("An error occured in UnitOfWork (Dispose) : ", e);
+                Log.LogError(ex);
                 throw;
             }
-            
         }
     }
 }

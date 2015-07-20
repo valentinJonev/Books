@@ -41,7 +41,6 @@
             bundles.Add(new ScriptBundle("~/bundles/ie8")
                 .Include("~/Scripts/respond.min.js")
                 .Include("~/Scripts/html5shiv.min.js"));
-
         }
     }
 }

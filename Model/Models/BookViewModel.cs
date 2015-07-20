@@ -9,9 +9,13 @@ namespace Model.Models
     public class BookViewModel
     {
         public int BookId { get; set; }
+
         public string Name { get; set; }
+
         public string Cover { get; set; }
+
         public int PublishDate { get; set; }
+
         public string Author { get; set; }
     }
 }

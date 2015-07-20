@@ -48,7 +48,7 @@
                         List<BookViewModel> booksView = new List<BookViewModel>();
                         foreach (Author author in authorsList)
                         {
-                            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name == search.Title);
+                            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name.Contains(search.Title)).OrderBy(b => b.Name);
                             foreach (var book in books)
                             {
                                 booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
@@ -71,7 +71,7 @@
                         List<BookViewModel> booksView = new List<BookViewModel>();
                         foreach (Author author in authorsList)
                         {
-                            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name == search.Title);
+                            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name.Contains(search.Title)).OrderBy(b => b.Name);
                             foreach (var book in books)
                             {
                                 booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
@@ -95,7 +95,7 @@
                     List<BookViewModel> booksView = new List<BookViewModel>();
                     foreach (Author author in authorsList)
                     {
-                        var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id);
+                        var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id).OrderBy(b => b.Name);
                         foreach (var book in books)
                         {
                             booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
@@ -116,7 +116,7 @@
                 List<BookViewModel> booksView = new List<BookViewModel>();
                 foreach (Author author in authorsList)
 	            {
-		            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id);
+                    var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id).OrderBy(b => b.Name);
                     foreach (var book in books)
                     {
                         booksView.Add(new BookViewModel { BookId = book.BookId, Author = author.Name, Cover = book.Cover, Name = book.Name, PublishDate = book.PublishDate });
@@ -125,78 +125,7 @@
                 
                 return this.View(booksView);
             }
-            
         }
-        
-        /*
-        [HttpPost]
-        public virtual ActionResult Index([ModelBinder(typeof(CustomBinder))] SearchViewModel search)
-        {
-            if (!string.IsNullOrEmpty(search.Title))
-            {
-                if (!string.IsNullOrEmpty(search.Author))
-                {
-                    try
-                    {
-                        var authors = this.unitOfWork.AuthorRepository.Get(a => a.Name.Contains(search.Author));
-                        List<Book> booksList = new List<Book>();
-                        foreach (Author author in authors)
-                        {
-                            var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id && b.Name.Contains(search.Title));
-                            foreach (var book in books)
-                            {
-                                booksList.Add(book);
-                            }
-                        }
-
-                        booksList.OrderBy(b => b.Name);
-                        return this.View("Index",booksList);
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Error("An error occured in Books/Index (Search by title and author) : ", ex);
-                        throw;
-                    }
-                    
-                }
-                else
-                {
-                    return this.View("Index",this.unitOfWork.BookRepository.Get(b => b.Name.Contains(search.Title)).OrderBy(b => b.Name));
-                }
-                
-            }
-
-            if (!string.IsNullOrEmpty(search.Author))
-            {
-                try
-                {
-                    var authors = this.unitOfWork.AuthorRepository.Get(a => a.Name.Contains(search.Author));
-                    List<Book> booksList = new List<Book>();
-                    foreach (Author author in authors)
-                    {
-                        var books = this.unitOfWork.BookRepository.Get(b => b.AuthorId == author.Id);
-                        foreach (var book in books)
-                        {
-                            booksList.Add(book);
-                        }
-                    }
-
-                    booksList.OrderBy(b => b.Name);
-                    return this.View(booksList);
-                }
-                catch (Exception ex)
-                {
-                    log.Error("An error occured in Books/Index (Search by author) : ", ex);
-                    throw;
-                }
-                
-            }
-            else
-            {
-                return this.View(this.unitOfWork.BookRepository.Get().OrderBy(b => b.Name));
-            }
-        }
-         * */
 
         [HttpPost]
         public virtual ActionResult UploadBook(HttpPostedFileBase Cover, string Name, string Date, string Authors)

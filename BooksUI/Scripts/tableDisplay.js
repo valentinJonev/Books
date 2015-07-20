@@ -6,7 +6,6 @@ function LoadTable() {
         "autoWidth": false,
         columnDefs: [{ "width": "15%", "targets": 0 }],
         "bFilter": false,
-        "bSort": false,
         responsive: true,
     });
     $("#publish").validate({
